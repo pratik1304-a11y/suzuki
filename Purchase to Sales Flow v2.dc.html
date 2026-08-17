@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f3f4f1; }
+  * { -webkit-font-smoothing: antialiased; }
+  a { color: #b0451c; text-decoration: none; }
+  a:hover { color: #da5c29; text-decoration: underline; }
+  input, select, button { font-family: inherit; }
+  input:focus, select:focus { border-color: #da5c29 !important; outline: none; }
+  ::selection { background: #f6d9cc; }
+</style>
+</helmet>
+<div style="display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh;min-width:1330px;background:#f3f4f1;font-family:'Nunito Sans',ui-sans-serif,Helvetica,Arial,sans-serif;color:#16202b">
+
+  <div style="background:#0f2438;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;color:#e6ecf2">
+    <div style="padding:18px 20px 14px">
+      <div style="font:700 16px/1.2 'Nunito Sans',sans-serif;letter-spacing:-.01em;color:#ffffff">{{ dealerName }}</div>
+      <div style="margin-top:3px;font:500 10.5px/1.4 'Nunito Sans',sans-serif;letter-spacing:.05em;color:#7e93a8">NASHIK ROAD · DEALER SMI-NSK-0142</div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:4px 12px 14px">
+      <sc-for list="{{ nav }}" as="g" hint-placeholder-count="4">
+        <div style="margin-bottom:14px">
+          <div style="padding:0 10px 7px;font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.13em;color:#7e93a8">{{ g.label }}</div>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+            <div onClick="{{ it.go }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;margin-bottom:3px;border-radius:7px;cursor:pointer;background:{{ it.bg }}" style-hover="background:#2e445e">
+              <span style="font:{{ it.weight }} 13px/1.3 'Nunito Sans',sans-serif;color:{{ it.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ it.label }}</span>
+              <span style="font:700 10px/1.4 'Nunito Sans',sans-serif;color:{{ it.badgeFg }};flex:none">{{ it.badge }}</span>
+            </div>
+            <sc-if value="{{ it.showSteps }}">
+              <div style="padding:2px 0 6px 6px;border-left:1px solid #22384f;margin:0 0 4px 14px">
+                <sc-for list="{{ steps }}" as="s" hint-placeholder-count="11">
+                  <div onClick="{{ s.go }}" style="display:grid;grid-template-columns:17px 1fr;gap:8px;align-items:center;padding:5px 10px;border-radius:6px;cursor:pointer;background:{{ s.bg }}" style-hover="background:#1c3348">
+                    <span style="width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 8.5px/1 'Nunito Sans',sans-serif;background:{{ s.dotBg }};color:{{ s.dotFg }};border:1px solid {{ s.dotBd }}">{{ s.mark }}</span>
+                    <span style="font:{{ s.weight }} 12px/1.3 'Nunito Sans',sans-serif;color:{{ s.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="border-top:1px solid #22384f;padding:13px 22px 16px;font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#7e93a8">Support · ext. 204</div>
+  </div>
+
+  <div style="min-width:0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 26px 0">
+      <div style="min-width:0">
+        <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#8b98a5;margin-bottom:7px">{{ crumb }}</div>
+        <h1 style="margin:0;font:700 24px/1.15 'Nunito Sans',sans-serif;letter-spacing:-.015em">{{ pageTitle }}</h1>
+        <p style="margin:6px 0 0;font:500 12.5px/1.55 'Nunito Sans',sans-serif;color:#6b7a89;max-width:74ch;text-wrap:pretty">{{ pageSub }}</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;flex:none">
+        <input placeholder="Search chassis / mobile / invoice" style="width:238px;box-sizing:border-box;padding:9px 12px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:500 12px/1.2 'Nunito Sans',sans-serif;color:#16202b" />
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 11px;border-radius:7px;background:#ffffff;border:1px solid #e3e3de">
+          <span style="width:22px;height:22px;border-radius:50%;background:#0f2438;color:#fff;display:flex;align-items:center;justify-content:center;font:700 9.5px/1 'Nunito Sans',sans-serif">MK</span>
+          <span style="font:600 11.5px/1.2 'Nunito Sans',sans-serif;color:#26313c">Manisha K. · Back office</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:16px 26px 44px">
+
+      <sc-if value="{{ isDash }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+            <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+              <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:8px">{{ k.label }}</div>
+                <div style="font:700 23px/1 'Nunito Sans',sans-serif;color:{{ k.fg }};font-variant-numeric:tabular-nums">{{ k.v }}</div>
+                <div style="margin-top:6px;font:500 11px/1.35 'Nunito Sans',sans-serif;color:#8b98a5">{{ k.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:10px">
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #eeeeea">
+                <span style="font:700 13.5px/1.2 'Nunito Sans',sans-serif">Deals in progress</span>
+                <span style="font:600 11px/1.2 'Nunito Sans',sans-serif;color:#8b98a5">purchase → sales pipeline</span>
+              </div>
+              <sc-raw-table style="width:100%;border-collapse:collapse">
+                <sc-raw-thead>
+                  <sc-raw-tr>
+                    <sc-for list="{{ pipeCols }}" as="c" hint-placeholder-count="5">
+                      <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                    </sc-for>
+                  </sc-raw-tr>
+                </sc-raw-thead>
+                <sc-raw-tbody>
+                  <sc-for list="{{ pipeRows }}" as="r" hint-placeholder-count="6">
+                    <sc-raw-tr style-hover="background:#faf9f6">
+                      <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="5">
+                        <sc-raw-td style="{{ c.st }}">{{ c.v }}</sc-raw-td>
+                      </sc-for>
+                    </sc-raw-tr>
+                  </sc-for>
+                </sc-raw-tbody>
+              </sc-raw-table>
+            </div>
+            <div style="display:grid;gap:10px;align-content:start">
+              <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+                <div style="font:700 13.5px/1.2 'Nunito Sans',sans-serif;margin-bottom:11px">Stage load</div>
+                <sc-for list="{{ stageLoad }}" as="s" hint-placeholder-count="6">
+                  <div style="display:grid;grid-template-columns:120px 1fr 24px;align-items:center;gap:10px;padding:5px 0">
+                    <span style="font:500 12px/1.3 'Nunito Sans',sans-serif;color:#4a5a68;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.label }}</span>
+                    <span style="display:block;height:7px;border-radius:5px;background:#eceae4;overflow:hidden"><span style="display:block;height:7px;border-radius:5px;background:{{ s.color }};width:{{ s.w }}"></span></span>
+                    <span style="font:700 11.5px/1.3 'Nunito Sans',sans-serif;text-align:right;font-variant-numeric:tabular-nums">{{ s.n }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+                <div style="font:700 13.5px/1.2 'Nunito Sans',sans-serif;margin-bottom:9px">Needs a decision today</div>
+                <sc-for list="{{ exceptions }}" as="e" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #f2f1ed">
+                    <span style="font:500 12px/1.4 'Nunito Sans',sans-serif;color:#26313c">{{ e.label }}</span>
+                    <span style="font:700 11.5px/1.4 'Nunito Sans',sans-serif;color:{{ e.fg }};flex:none">{{ e.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.po }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #eeeeea">
+              <div style="padding:11px 14px;border-right:1px solid #f2f1ed">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">Supplier</div>
+                <div style="font:600 12.5px/1.35 'Nunito Sans',sans-serif">Suzuki Motorcycle India Pvt. Ltd.</div>
+              </div>
+              <div style="padding:11px 14px;border-right:1px solid #f2f1ed">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">Supplier GSTIN</div>
+                <div style="font:600 12.5px/1.35 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">06AAECS7935K1ZR</div>
+              </div>
+              <div style="padding:11px 14px;border-right:1px solid #f2f1ed">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">Order no. / date</div>
+                <div style="font:600 12.5px/1.35 'Nunito Sans',sans-serif">{{ poRef }} · 04 Aug 2026</div>
+              </div>
+              <div style="padding:11px 14px">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">Expected inward</div>
+                <div style="font:600 12.5px/1.35 'Nunito Sans',sans-serif">14 Aug 2026 · credit 30 days</div>
+              </div>
+            </div>
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ poCols }}" as="c" hint-placeholder-count="6">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ poLines }}" as="l" hint-placeholder-count="4">
+                  <sc-raw-tr style-hover="background:#faf9f6">
+                    <sc-for list="{{ l.cells }}" as="c" hint-placeholder-count="6">
+                      <sc-raw-td style="{{ c.st }}">{{ c.v }}</sc-raw-td>
+                    </sc-for>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+            <div style="display:flex;justify-content:flex-end;gap:30px;padding:11px 14px;background:#faf9f6;border-top:1px solid #eeeeea">
+              <div style="text-align:right">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5">Units</div>
+                <div style="font:700 14px/1.5 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">{{ poUnits }}</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5">Order value</div>
+                <div style="font:700 14px/1.5 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">{{ poValue }}</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px">
+            <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">Approved by proprietor · these quantities become the expected GRN lines.</span>
+            <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Send order to OEM →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.grn }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid #eeeeea;background:#faf9f6">
+              <span style="font:700 12px/1.2 'Nunito Sans',sans-serif">GRN/26-27/0311 · against {{ poRef }}</span>
+              <span style="font:600 11.5px/1.2 'Nunito Sans',sans-serif;color:#6b7a89">OEM invoice SMI/8842 · 14 Aug 2026</span>
+            </div>
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ grnCols }}" as="c" hint-placeholder-count="6">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ inbound }}" as="v" hint-placeholder-count="4">
+                  <sc-raw-tr style-hover="background:#faf9f6">
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:#26313c"><span style="font-weight:700">{{ v.model }}</span><span style="color:#8b98a5"> · {{ v.colour }}</span></sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#26313c;font-variant-numeric:tabular-nums">{{ v.chassis }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#26313c;font-variant-numeric:tabular-nums">{{ v.engine }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12px/1.4 'Nunito Sans',sans-serif;color:#6b7a89">{{ v.keyNo }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12px/1.4 'Nunito Sans',sans-serif;color:#6b7a89">{{ v.battery }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea">
+                      <span onClick="{{ v.toggle }}" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;font:700 11.5px/1 'Nunito Sans',sans-serif;color:{{ v.chkFg }}">
+                        <span style="width:14px;height:14px;border-radius:4px;border:1px solid {{ v.chkBd }};background:{{ v.chkBg }};color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px">{{ v.chkMark }}</span>{{ v.chkLabel }}</span>
+                    </sc-raw-td>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px">
+            <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">{{ grnNote }}</span>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+              <button onClick="{{ advance }}" style="border:none;background:{{ grnBtnBg }};color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:{{ grnBtnCur }}">Post GRN to stock →</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.stock }}">
+        <div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+            <sc-for list="{{ stockTiles }}" as="t" hint-placeholder-count="4">
+              <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:11px 14px">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:7px">{{ t.label }}</div>
+                <div style="font:700 20px/1 'Nunito Sans',sans-serif;color:{{ t.fg }};font-variant-numeric:tabular-nums">{{ t.n }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ stockCols }}" as="c" hint-placeholder-count="6">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ stockRows }}" as="v" hint-placeholder-count="8">
+                  <sc-raw-tr style="background:{{ v.rowBg }}" style-hover="background:#faf9f6">
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:#26313c"><span style="font-weight:700">{{ v.model }}</span><span style="color:#8b98a5"> · {{ v.variant }}</span></sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:#6b7a89">{{ v.colour }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#26313c;font-variant-numeric:tabular-nums">{{ v.chassisShort }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#8b98a5;text-align:right;font-variant-numeric:tabular-nums">{{ v.aged }}</sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea">
+                      <span style="display:inline-block;padding:3px 9px;border-radius:99px;font:700 10px/1.5 'Nunito Sans',sans-serif;background:{{ v.badgeBg }};color:{{ v.badgeFg }}">{{ v.badge }}</span>
+                    </sc-raw-td>
+                    <sc-raw-td style="padding:9px 13px;border-bottom:1px solid #eeeeea;text-align:right">
+                      <span onClick="{{ v.select }}" style="font:700 11.5px/1 'Nunito Sans',sans-serif;color:{{ v.actFg }};cursor:{{ v.actCur }}">{{ v.act }}</span>
+                    </sc-raw-td>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px">
+            <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">{{ allocNote }}</span>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+              <button onClick="{{ advance }}" style="border:none;background:{{ allocBtnBg }};color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:{{ allocBtnCur }}">Reserve &amp; start booking →</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.booking }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+            <div style="font:700 13px/1.2 'Nunito Sans',sans-serif;margin-bottom:12px">Customer</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Customer name</div>
+                <input onChange="{{ h.customer }}" defaultValue="{{ custName }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Mobile</div>
+                <input onChange="{{ h.mobile }}" defaultValue="{{ custMobile }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b;font-variant-numeric:tabular-nums" />
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Customer type</div>
+                <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                  <option>Individual</option>
+                  <option>Firm / GST</option>
+                  <option>Institutional</option>
+                </select>
+              </div>
+              <div style="grid-column:span 2">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Address</div>
+                <input onChange="{{ h.address }}" defaultValue="{{ custAddress }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Nominee</div>
+                <input defaultValue="Vaishali Pawar (spouse)" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+              </div>
+            </div>
+            <div style="height:1px;background:#f2f1ed;margin:15px 0"></div>
+            <div style="font:700 13px/1.2 'Nunito Sans',sans-serif;margin-bottom:12px">Vehicle &amp; commercials</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Allocated vehicle</div>
+                <div style="padding:8px 11px;border:1px solid #eceae4;border-radius:7px;background:#faf9f6;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#4a5a68">{{ dealVehicleLine }}</div>
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Chassis</div>
+                <div style="padding:8px 11px;border:1px solid #eceae4;border-radius:7px;background:#faf9f6;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#4a5a68;font-variant-numeric:tabular-nums">{{ dealChassis }}</div>
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Booking advance ₹</div>
+                <input onChange="{{ h.advance }}" defaultValue="{{ dealAdvance }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b;font-variant-numeric:tabular-nums" />
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Sales executive</div>
+                <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                  <option>Amol Deshmukh</option>
+                  <option>Priya Salve</option>
+                </select>
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Accessories</div>
+                <input defaultValue="{{ accLine }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+              </div>
+              <div>
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Expected delivery</div>
+                <input defaultValue="{{ dealDelivery }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px">
+            <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">Booking receipt {{ bookingRef }} is issued on save; the chassis is held for three days.</span>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+              <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Save booking → KYC</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.kyc }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <sc-for list="{{ kycRows }}" as="d" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:1fr 200px 130px 120px;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #f2f1ed">
+                <div>
+                  <div style="font:700 12.5px/1.35 'Nunito Sans',sans-serif">{{ d.name }}</div>
+                  <div style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">{{ d.why }}</div>
+                </div>
+                <div style="font:600 12px/1.35 'Nunito Sans',sans-serif;color:#26313c;font-variant-numeric:tabular-nums">{{ d.number }}</div>
+                <div style="font:600 11.5px/1.35 'Nunito Sans',sans-serif;color:{{ d.stFg }}">{{ d.status }}</div>
+                <div style="text-align:right">
+                  <span onClick="{{ d.toggle }}" style="display:inline-block;padding:6px 12px;border-radius:7px;border:1px solid {{ d.btnBd }};background:{{ d.btnBg }};color:{{ d.btnFg }};font:700 11.5px/1.2 'Nunito Sans',sans-serif;cursor:pointer">{{ d.btn }}</span>
+                </div>
+              </div>
+            </sc-for>
+            <div style="padding:11px 14px;background:#faf9f6;font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#6b7a89">{{ kycNote }}</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ advance }}" style="border:none;background:{{ kycBtnBg }};color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:{{ kycBtnCur }}">Continue to payment →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.payment }}">
+        <div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+              <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:9px">Deal type</div>
+              <div style="display:flex;gap:7px;margin-bottom:15px">
+                <span onClick="{{ setCash }}" style="flex:1;text-align:center;padding:9px;border-radius:7px;border:1px solid {{ cashBd }};background:{{ cashBg }};color:{{ cashFg }};font:700 12.5px/1.2 'Nunito Sans',sans-serif;cursor:pointer">Cash / self</span>
+                <span onClick="{{ setFinance }}" style="flex:1;text-align:center;padding:9px;border-radius:7px;border:1px solid {{ finBd }};background:{{ finBg }};color:{{ finFg }};font:700 12.5px/1.2 'Nunito Sans',sans-serif;cursor:pointer">Financed</span>
+              </div>
+              <sc-if value="{{ isFinance }}">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Financier</div>
+                    <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                      <option>Bajaj Finance</option>
+                      <option>TVS Credit</option>
+                      <option>HDB Financial</option>
+                    </select>
+                  </div>
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Down payment ₹</div>
+                    <input onChange="{{ h.down }}" defaultValue="{{ dealDown }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b;font-variant-numeric:tabular-nums" />
+                  </div>
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Tenure</div>
+                    <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                      <option>24 months</option>
+                      <option>30 months</option>
+                      <option>36 months</option>
+                    </select>
+                  </div>
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">DO number</div>
+                    <input defaultValue="BFL/NSK/44210" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ isCash }}">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Mode</div>
+                    <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                      <option>UPI</option>
+                      <option>Card</option>
+                      <option>NEFT</option>
+                      <option>Cash</option>
+                    </select>
+                  </div>
+                  <div>
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Reference</div>
+                    <input defaultValue="UPI/6284410927" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+              <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:11px">Settlement</div>
+              <sc-for list="{{ settleRows }}" as="r" hint-placeholder-count="4">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f1ed">
+                  <span style="font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:{{ r.fg }}">{{ r.label }}</span>
+                  <span style="font:700 12.5px/1.4 'Nunito Sans',sans-serif;color:{{ r.fg }};font-variant-numeric:tabular-nums">{{ r.amt }}</span>
+                </div>
+              </sc-for>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:11px;padding-top:10px;border-top:1px solid #e3e3de">
+                <span style="font:700 12.5px/1.4 'Nunito Sans',sans-serif">Balance to collect</span>
+                <span style="font:700 16px/1.2 'Nunito Sans',sans-serif;color:{{ balFg }};font-variant-numeric:tabular-nums">{{ balance }}</span>
+              </div>
+              <div style="margin-top:11px;padding:9px 11px;border-radius:7px;background:#faf9f6;font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#6b7a89">{{ settleNote }}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Receipt posted → Invoice</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.invoice }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <div style="display:flex;justify-content:space-between;gap:24px;padding:15px;border-bottom:1px solid #eeeeea">
+              <div>
+                <div style="font:700 15px/1.2 'Nunito Sans',sans-serif">{{ dealerName }}</div>
+                <div style="font:500 11.5px/1.6 'Nunito Sans',sans-serif;color:#6b7a89">Nashik Road, Nashik 422101<br />GSTIN 27AAFCB1234M1ZK · Dealer code SMI-NSK-0142</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5">Tax invoice</div>
+                <div style="font:700 14px/1.6 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">{{ invRef }}</div>
+                <div style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#6b7a89">17 Aug 2026</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #eeeeea">
+              <div style="padding:12px 15px;border-right:1px solid #f2f1ed">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Billed to</div>
+                <div style="font:700 12.5px/1.5 'Nunito Sans',sans-serif">{{ custName }}</div>
+                <div style="font:500 11.5px/1.6 'Nunito Sans',sans-serif;color:#6b7a89">{{ custAddress }}<br />{{ custMobile }}</div>
+              </div>
+              <div style="padding:12px 15px">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Vehicle</div>
+                <div style="font:700 12.5px/1.5 'Nunito Sans',sans-serif">{{ dealVehicleLine }}</div>
+                <div style="font:500 11.5px/1.6 'Nunito Sans',sans-serif;color:#6b7a89;font-variant-numeric:tabular-nums">Chassis {{ dealChassis }}<br />Engine {{ dealEngine }}</div>
+              </div>
+            </div>
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ invCols }}" as="c" hint-placeholder-count="6">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ invoiceLines }}" as="i" hint-placeholder-count="5">
+                  <sc-raw-tr style-hover="background:#faf9f6">
+                    <sc-for list="{{ i.cells }}" as="c" hint-placeholder-count="6">
+                      <sc-raw-td style="{{ c.st }}">{{ c.v }}</sc-raw-td>
+                    </sc-for>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:13px 15px;background:#faf9f6;border-top:1px solid #eeeeea">
+              <div style="font:500 11.5px/1.6 'Nunito Sans',sans-serif;color:#6b7a89;max-width:46ch">{{ amountWords }}</div>
+              <div style="text-align:right;flex:none">
+                <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5">On-road total</div>
+                <div style="font:700 21px/1.3 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">{{ onRoad }}</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px">
+            <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">On generate: stock marked Sold, ledger posted, PDF sent on WhatsApp.</span>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+              <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Generate invoice →</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.rto }}">
+        <div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+              <div style="font:700 13px/1.2 'Nunito Sans',sans-serif;margin-bottom:12px">Registration</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">RTO</div>
+                  <input defaultValue="MH-15 Nashik" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Registration no.</div>
+                  <input onChange="{{ h.regNo }}" defaultValue="{{ regNo }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:700 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b;font-variant-numeric:tabular-nums" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">TR / Form 20</div>
+                  <input defaultValue="Filed 17 Aug 2026" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Road tax ₹</div>
+                  <input defaultValue="5,020" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b;font-variant-numeric:tabular-nums" />
+                </div>
+              </div>
+            </div>
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+              <div style="font:700 13px/1.2 'Nunito Sans',sans-serif;margin-bottom:12px">Insurance</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Insurer</div>
+                  <select style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">
+                    <option>ICICI Lombard</option>
+                    <option>Bajaj Allianz</option>
+                    <option>New India Assurance</option>
+                  </select>
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Policy no.</div>
+                  <input defaultValue="3005/K-88214/00" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Cover</div>
+                  <input defaultValue="OD 1 yr + TP 5 yr" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Valid till</div>
+                  <input defaultValue="16 Aug 2027" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Save &amp; schedule delivery →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.delivery }}">
+        <div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:10px;align-items:start">
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+              <div style="padding:11px 14px;border-bottom:1px solid #eeeeea;background:#faf9f6;font:700 12px/1.2 'Nunito Sans',sans-serif">Pre-delivery inspection · {{ pdiCount }}</div>
+              <sc-for list="{{ pdiRows }}" as="c" hint-placeholder-count="6">
+                <div onClick="{{ c.toggle }}" style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #f2f1ed;cursor:pointer" style-hover="background:#faf9f6">
+                  <span style="width:15px;height:15px;flex:none;border-radius:4px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:#fff;display:inline-flex;align-items:center;justify-content:center;font:700 9px/1 'Nunito Sans',sans-serif">{{ c.mark }}</span>
+                  <span style="font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:{{ c.fg }}">{{ c.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:15px">
+              <div style="font:700 13px/1.2 'Nunito Sans',sans-serif;margin-bottom:12px">Handover</div>
+              <div style="display:grid;gap:12px">
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Delivery date</div>
+                  <input defaultValue="{{ dealDelivery }}" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Odometer at delivery</div>
+                  <input defaultValue="4 km" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div>
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:6px">Handed over by</div>
+                  <input defaultValue="Amol Deshmukh" style="width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b" />
+                </div>
+                <div style="padding:10px 11px;border-radius:7px;background:#faf9f6;font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#6b7a89">Two keys, owner's manual, warranty booklet and invoice copy issued. Customer signature captured on tablet.</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ advance }}" style="border:none;background:{{ pdiBtnBg }};color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:{{ pdiBtnCur }}">Confirm delivery →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.master }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid #eeeeea">
+              <div>
+                <div style="font:700 15px/1.2 'Nunito Sans',sans-serif">{{ dealVehicleLine }}</div>
+                <div style="font:600 12px/1.5 'Nunito Sans',sans-serif;color:#6b7a89;font-variant-numeric:tabular-nums">{{ regNo }} · owner {{ custName }}</div>
+              </div>
+              <span style="padding:4px 11px;border-radius:99px;background:#e7f2ea;color:#1f7a52;font:700 10.5px/1.7 'Nunito Sans',sans-serif">Delivered · in warranty</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr)">
+              <sc-for list="{{ masterFields }}" as="f" hint-placeholder-count="16">
+                <div style="padding:11px 15px;border-right:1px solid #f5f4f0;border-bottom:1px solid #f5f4f0">
+                  <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">{{ f.k }}</div>
+                  <div style="font:600 12.5px/1.4 'Nunito Sans',sans-serif;color:#16202b">{{ f.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px;padding:13px 15px;flex-wrap:wrap">
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Open customer profile</span>
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Sale documents (4)</span>
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Service history (0)</span>
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Ledger</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ advance }}" style="border:none;background:#da5c29;color:#fff;padding:9px 17px;border-radius:7px;font:700 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#b0451c">Generate free-service plan →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ p.service }}">
+        <div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ fsCols }}" as="c" hint-placeholder-count="5">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ freeServices }}" as="s" hint-placeholder-count="4">
+                  <sc-raw-tr style-hover="background:#faf9f6">
+                    <sc-for list="{{ s.cells }}" as="c" hint-placeholder-count="5">
+                      <sc-raw-td style="{{ c.st }}">{{ c.v }}</sc-raw-td>
+                    </sc-for>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+          </div>
+          <div style="margin-top:11px;background:#0f2438;border-radius:10px;padding:14px 16px">
+            <div style="font:700 13.5px/1.3 'Nunito Sans',sans-serif;color:#ffffff;margin-bottom:5px">Deal closed — {{ dealRef }}</div>
+            <div style="font:500 12.5px/1.6 'Nunito Sans',sans-serif;color:#b8c6d4;max-width:78ch;text-wrap:pretty">Purchase order → GRN → stock → booking → KYC → payment → invoice → RTO → delivery, all against one chassis. The service desk now finds this bike by mobile, registration or chassis number, with the sale, payments and warranty already attached.</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:13px">
+            <button onClick="{{ back }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">← Back</button>
+            <button onClick="{{ restart }}" style="border:1px solid #d8d8d2;background:#fff;color:#26313c;padding:9px 15px;border-radius:7px;font:600 12.5px/1 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Start a new deal</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+            <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:9px">Deal context · {{ dealRef }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 22px">
+              <sc-for list="{{ context }}" as="c" hint-placeholder-count="10">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #f5f4f0">
+                  <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5;flex:none">{{ c.k }}</span>
+                  <span style="font:700 11.5px/1.4 'Nunito Sans',sans-serif;color:{{ c.fg }};text-align:right;font-variant-numeric:tabular-nums">{{ c.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+            <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:9px">Audit trail</div>
+            <sc-for list="{{ audit }}" as="a" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:52px 1fr;gap:9px;padding:4px 0">
+                <span style="font:600 11px/1.5 'Nunito Sans',sans-serif;color:#a9b3bd;font-variant-numeric:tabular-nums">{{ a.t }}</span>
+                <span style="font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#26313c">{{ a.text }}</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{ auditEmpty }}">
+              <div style="font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#a9b3bd">Nothing posted yet — actions on this deal will appear here.</div>
+            </sc-if>
+          </div>
+        </div>
+
+      <sc-if value="{{ isReports }}">
+        <div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px">
+            <sc-for list="{{ repKpis }}" as="k" hint-placeholder-count="6">
+              <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:11px 13px">
+                <div style="font:700 9.5px/1.2 'Nunito Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8b98a5;margin-bottom:7px">{{ k.label }}</div>
+                <div style="font:700 17px/1 'Nunito Sans',sans-serif;color:{{ k.fg }};font-variant-numeric:tabular-nums">{{ k.v }}</div>
+                <div style="margin-top:5px;font:500 10.5px/1.3 'Nunito Sans',sans-serif;color:{{ k.dFg }}">{{ k.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-for list="{{ periods }}" as="pd" hint-placeholder-count="3">
+                <span onClick="{{ pd.go }}" style="padding:7px 14px;border-radius:7px;border:1px solid {{ pd.bd }};background:{{ pd.bg }};color:{{ pd.fg }};font:700 11.5px/1.2 'Nunito Sans',sans-serif;cursor:pointer">{{ pd.label }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:7px">
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Export CSV</span>
+              <span style="padding:7px 12px;border:1px solid #d8d8d2;border-radius:7px;background:#fff;font:600 11.5px/1.3 'Nunito Sans',sans-serif;cursor:pointer" style-hover="background:#f3f4f1">Print</span>
+            </div>
+          </div>
+          <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #eeeeea">
+              <span style="font:700 13px/1.2 'Nunito Sans',sans-serif">{{ repTableTitle }}</span>
+              <span style="font:600 11px/1.2 'Nunito Sans',sans-serif;color:#8b98a5">{{ repRowCount }}</span>
+            </div>
+            <sc-raw-table style="width:100%;border-collapse:collapse">
+              <sc-raw-thead>
+                <sc-raw-tr>
+                  <sc-for list="{{ repCols }}" as="c" hint-placeholder-count="6">
+                    <sc-raw-th style="{{ c.st }}">{{ c.label }}</sc-raw-th>
+                  </sc-for>
+                </sc-raw-tr>
+              </sc-raw-thead>
+              <sc-raw-tbody>
+                <sc-for list="{{ repRows }}" as="r" hint-placeholder-count="8">
+                  <sc-raw-tr onClick="{{ r.drill }}" style="cursor:pointer" style-hover="background:#faf9f6">
+                    <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6">
+                      <sc-raw-td style="{{ c.st }}">{{ c.v }}</sc-raw-td>
+                    </sc-for>
+                  </sc-raw-tr>
+                </sc-for>
+              </sc-raw-tbody>
+            </sc-raw-table>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:12px 14px;background:#faf9f6;border-top:1px solid #eeeeea">
+              <span style="font:500 11.5px/1.4 'Nunito Sans',sans-serif;color:#8b98a5">{{ repFootNote }}</span>
+              <span style="font:700 12.5px/1.4 'Nunito Sans',sans-serif;font-variant-numeric:tabular-nums">{{ repTotal }}</span>
+            </div>
+          </div>
+          <sc-if value="{{ hasDrill }}">
+            <div style="margin-top:11px;background:#ffffff;border:1px solid #f0c9b8;border-radius:10px;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:#fdf1eb;border-bottom:1px solid #f0c9b8">
+                <span style="font:700 12.5px/1.2 'Nunito Sans',sans-serif;color:#8f3714">Drill-down · {{ drillTitle }}</span>
+                <span onClick="{{ closeDrill }}" style="font:700 11.5px/1.2 'Nunito Sans',sans-serif;color:#b0451c;cursor:pointer">Close</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr)">
+                <sc-for list="{{ drillFields }}" as="f" hint-placeholder-count="8">
+                  <div style="padding:11px 14px;border-right:1px solid #f5f4f0;border-bottom:1px solid #f5f4f0">
+                    <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:5px">{{ f.k }}</div>
+                    <div style="font:600 12.5px/1.4 'Nunito Sans',sans-serif">{{ f.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="padding:11px 14px;font:500 11.5px/1.5 'Nunito Sans',sans-serif;color:#6b7a89">Sales → Customer → Vehicle → Invoice, and on to Service → Job card → Mechanic → Parts, from this one row.</div>
+            </div>
+          </sc-if>
+          <div style="margin-top:11px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+              <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:9px">Exceptions needing a decision</div>
+              <sc-for list="{{ exceptions }}" as="e" hint-placeholder-count="5">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #f5f4f0">
+                  <span style="font:500 12px/1.4 'Nunito Sans',sans-serif;color:#26313c">{{ e.label }}</span>
+                  <span style="font:700 11.5px/1.4 'Nunito Sans',sans-serif;color:{{ e.fg }};flex:none">{{ e.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="background:#ffffff;border:1px solid #e3e3de;border-radius:10px;padding:13px 15px">
+              <div style="font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#8b98a5;margin-bottom:9px">Month to date · units by model</div>
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:126px 1fr 30px;align-items:center;gap:10px;padding:5px 0">
+                  <span style="font:500 11.5px/1.3 'Nunito Sans',sans-serif;color:#26313c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.label }}</span>
+                  <span style="display:block;height:7px;border-radius:5px;background:#eceae4;overflow:hidden"><span style="display:block;height:7px;border-radius:5px;background:#da5c29;width:{{ b.w }}"></span></span>
+                  <span style="font:700 11px/1.3 'Nunito Sans',sans-serif;color:#26313c;text-align:right;font-variant-numeric:tabular-nums">{{ b.n }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;dealerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Balaji Suzuki&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+
+    /* ── Master data ─────────────────────────────────────────────────────
+       Four records and nothing else: the model catalogue, the vehicle floor,
+       the sales ledger and the deal book. Every screen below — dashboard,
+       the eleven-step sales flow, and all six reports — is derived from
+       these, so a figure can never read one way on the dashboard and
+       another way in a report. Working the flow writes back into the same
+       records, which is why the register and the KPIs move as you go. */
+
+    this.models = [
+      { k: 'ac-rc', model: 'Access 125',         variant: 'Ride Connect', colour: 'Metallic Matte Black',  code: 'NP12A', chk: 'J', eng: 'P712ID', serial: 1104472, cost: 78900,  taxable: 67600  },
+      { k: 'ac-st', model: 'Access 125',         variant: 'Standard',     colour: 'Pearl Mirage White',    code: 'NP12A', chk: 'J', eng: 'P712ID', serial: 1098201, cost: 75700,  taxable: 64900  },
+      { k: 'bs-ex', model: 'Burgman Street 125', variant: 'EX',           colour: 'Metallic Royal Bronze', code: 'BS12C', chk: 'K', eng: 'C712ID', serial: 2207841, cost: 89200,  taxable: 76400  },
+      { k: 'bs-st', model: 'Burgman Street 125', variant: 'Standard',     colour: 'Pearl Grace White',     code: 'BS12C', chk: 'K', eng: 'C712ID', serial: 2201984, cost: 85600,  taxable: 73300  },
+      { k: 'av-rc', model: 'Avenis 125',         variant: 'Ride Connect', colour: 'Metallic Sonic Silver', code: 'AV12B', chk: 'J', eng: 'B712ID', serial: 1877340, cost: 80600,  taxable: 69100  },
+      { k: 'gs-rc', model: 'Gixxer SF 155',      variant: 'Ride Connect', colour: 'Metallic Triton Blue',  code: 'GS15D', chk: 'L', eng: 'D715ID', serial: 3309125, cost: 177200, taxable: 152300 },
+      { k: 'gx-st', model: 'Gixxer 250',         variant: 'Standard',     colour: 'Metallic Matte Black',  code: 'GX25F', chk: 'M', eng: 'F725ID', serial: 4402118, cost: 208300, taxable: 179400 }
+    ];
+    this.byKey = {};
+    this.models.forEach(m => { this.byKey[m.k] = m; });
+
+    // Seeded so the demo data is identical on every render and reload —
+    // Math.random() here would reshuffle the ledger under the reports.
+    const rnd = this.rng(20260817);
+    const pick = a => a[Math.floor(rnd() * a.length)];
+
+    let bat = 90214;
+    const unit = (mk, status, ageDays) => {
+      const m = this.byKey[mk], serial = m.serial;
+      m.serial += 47;
+      bat += 1;
+      return {
+        mk, model: m.model, variant: m.variant, colour: m.colour,
+        chassis: 'MB8' + m.code + m.chk + 'P' + serial,
+        engine: m.eng + (serial - 384),
+        keyNo: 'K-' + String(serial).slice(-4),
+        battery: 'BT-' + bat,
+        cost: m.cost, taxable: m.taxable,
+        status, ageDays
+      };
+    };
+
+    // Purchase order — the one record the GRN lines, the stock intake and
+    // the August purchase figures are all expanded from.
+    this.poRef = 'PO/26-27/0184';
+    this.poLines = [
+      { mk: 'ac-rc', qty: 3 }, { mk: 'ac-st', qty: 2 }, { mk: 'bs-ex', qty: 2 }, { mk: 'gs-rc', qty: 2 }
+    ].map(l => {
+      const m = this.byKey[l.mk];
+      return { mk: l.mk, qty: l.qty, model: m.model, variant: m.variant, colour: m.colour, rate: m.cost };
+    });
+    this.poUnits = this.poLines.reduce((a, l) => a + l.qty, 0);
+    this.poValue = this.poLines.reduce((a, l) => a + l.qty * l.rate, 0);
+
+    // Inbound is exactly what the PO ordered, unit by unit — not a second list.
+    const inbound = [];
+    this.poLines.forEach(l => {
+      for (let i = 0; i < l.qty; i++) {
+        inbound.push(Object.assign(unit(l.mk, 'inbound', 0), { received: false }));
+      }
+    });
+
+    // The floor as it stands before this GRN is posted.
+    const floorPlan = [
+      { mk: 'ac-rc', n: 5, from: 3,  to: 34 },
+      { mk: 'ac-st', n: 6, from: 6,  to: 41 },
+      { mk: 'bs-ex', n: 4, from: 4,  to: 28 },
+      { mk: 'bs-st', n: 3, from: 9,  to: 22 },
+      { mk: 'av-rc', n: 4, from: 7,  to: 41 },
+      { mk: 'gs-rc', n: 3, from: 5,  to: 96 },
+      { mk: 'gx-st', n: 2, from: 12, to: 19 }
+    ];
+    const stock = [];
+    floorPlan.forEach(p => {
+      for (let i = 0; i < p.n; i++) {
+        const age = Math.round(p.from + (p.to - p.from) * (p.n === 1 ? 0 : i / (p.n - 1)));
+        stock.push(unit(p.mk, 'available', age));
+      }
+    });
+
+    // Deal book — the deals already open on the floor. The three that hold a
+    // chassis are what make those units read Reserved on the stock screen;
+    // the two without one are the unallocated advances the dashboard flags.
+    this.openDeals = [
+      { ref: 'VS/0728', cust: 'Rehana Shaikh',    mk: 'bs-ex', stage: 'Invoice → RTO' },
+      { ref: 'VS/0727', cust: 'Nilesh Bhoir',     mk: 'gs-rc', stage: 'Blocked — QC hold' },
+      { ref: 'VS/0726', cust: 'Deepak Sonawane',  mk: 'ac-st', stage: 'KYC pending' },
+      { ref: 'VS/0725', cust: 'Manisha Thorat',   mk: 'av-rc', stage: 'Awaiting colour', unallocated: true },
+      { ref: 'VS/0724', cust: 'Sameer Kulkarni',  mk: 'gx-st', stage: 'Advance held — no allocation', unallocated: true }
+    ].map(d => {
+      const m = this.byKey[d.mk];
+      const u = d.unallocated ? null : stock.find(s => s.mk === d.mk && s.status === 'available');
+      if (u) u.status = 'reserved';
+      return Object.assign({}, d, {
+        chassis: u ? u.chassis : null,
+        model: m.model + ' ' + m.variant,
+        value: this.charges(m).onRoad
+      });
+    });
+
+    // Sales ledger — every invoice raised this month. The sales register,
+    // collections, model performance, the GST summary and the KPI strip are
+    // all reductions of this one array.
+    const NAMES = ['Sanjay R. Pawar', 'Rehana Shaikh', 'Nilesh Bhoir', 'Kavita Jadhav', 'Ganesh Wagh', 'Sameer Kulkarni', 'Ashwini Patil', 'Imran Qureshi', 'Deepak Sonawane', 'Manisha Thorat', 'Vikas Ahire', 'Snehal Gaikwad', 'Rohit Chavan', 'Pooja Nikam', 'Amit Borse', 'Sunita Kale', 'Prashant Dere', 'Rupali Shinde', 'Yogesh Bagul', 'Trupti Salunke', 'Mahesh Jagtap', 'Anita Wagh', 'Kiran Pagare', 'Sagar Mahale'];
+    const EXECS = ['Amol D.', 'Priya S.', 'Nikhil W.'];
+    const FIN = ['Bajaj Finance', 'TVS Credit', 'HDB Financial'];
+    const POOL = ['ac-rc', 'ac-rc', 'ac-rc', 'ac-st', 'ac-st', 'bs-ex', 'bs-st', 'av-rc', 'gs-rc', 'gx-st'];
+
+    const sales = [];
+    for (let i = 0; i < 54; i++) {
+      const m = this.byKey[pick(POOL)];
+      const ch = this.charges(m);
+      const sold = unit(m.k, 'delivered', 0);
+      const finance = rnd() < 0.62;
+      const day = Math.max(1, 17 - Math.floor(i / 3.4));
+      const age = 17 - day;
+      const down = finance ? 20000 + Math.round(rnd() * 3) * 5000 : 0;
+      const pending = finance && rnd() < 0.28;
+      sales.push({
+        inv: 'SI/26-27/' + (1104 - i),
+        day, age, date: String(day).padStart(2, '0') + ' Aug',
+        cust: NAMES[(i * 7 + 3) % NAMES.length],
+        mk: m.k, model: m.model, variant: m.variant, chassis: sold.chassis,
+        exec: EXECS[i % EXECS.length],
+        mode: finance ? 'Finance' : 'Cash',
+        financier: finance ? pick(FIN) : null,
+        amount: ch.onRoad, cost: m.cost, taxable: ch.taxable, cgst: ch.cgst, sgst: ch.sgst,
+        due: pending ? ch.onRoad - down - 5000 : 0,
+        delivered: i > 1,
+        registered: rnd() > 0.18
+      });
+    }
+
+    // Purchase history. April–July are closed months held as aggregates;
+    // August is derived from the ledger and this PO as you work the flow.
+    this.history = [
+      { month: 'Apr 2026', bought: 54, sold: 47, close: 22, purch: 4382000, sale: 5124000 },
+      { month: 'May 2026', bought: 61, sold: 58, close: 25, purch: 4917000, sale: 6248000 },
+      { month: 'Jun 2026', bought: 48, sold: 52, close: 21, purch: 3894000, sale: 5680000 },
+      { month: 'Jul 2026', bought: 57, sold: 55, close: 23, purch: 4620000, sale: 6012000 }
+    ];
+    this.augPrior = { units: 58, value: 4489100 };
+    this.liveRef = 'VS/26-27/0729';
+    this.liveInv = 'SI/26-27/1105';
+    this.bookingRef = 'BKG/26-27/0729';
+    this.grnRef = 'GRN/26-27/0311';
+
+    this.state = {
+      view: 'dash', idx: 0, done: {},
+      inbound, stock, sales, grnPosted: false,
+      selected: null,
+      kyc: { aadhaar: false, pan: false, addr: false, photo: false },
+      finance: true, down: 25000, advance: 5000,
+      customer: 'Sanjay R. Pawar', mobile: '98220 41773',
+      address: 'Plot 14, Sai Nagar, Panchavati, Nashik 422003',
+      regNo: 'MH-15-EK-4482', deliveryDate: new Date(2026, 7, 18),
+      pdi: [false, false, false, false, false, false],
+      audit: [], report: 'register', period: 'mtd', drill: null
+    };
+
+    this.steps = [
+      { id: 'po', label: 'Purchase order' },
+      { id: 'grn', label: 'Vehicle receipt' },
+      { id: 'stock', label: 'Vehicle stock' },
+      { id: 'booking', label: 'Customer booking' },
+      { id: 'kyc', label: 'KYC' },
+      { id: 'payment', label: 'Payment / finance' },
+      { id: 'invoice', label: 'Sales invoice' },
+      { id: 'rto', label: 'RTO & insurance' },
+      { id: 'delivery', label: 'Delivery note' },
+      { id: 'master', label: 'Vehicle master' },
+      { id: 'service', label: 'Free service plan' }
+    ];
+    this.pdiLabels = ['PDI sheet signed off', 'Fuel filled (2 L) & battery charged', 'Accessories fitted — fitment pack', 'Number plate fixed', 'Keys (2), manual, warranty booklet', 'Customer walkthrough done'];
+    this.meta = {
+      po: ['Step 01 · Procurement', 'Purchase order to Suzuki', 'Raise a model-wise indent against the OEM allocation. Quantities here become the expected line items on the inbound receipt.'],
+      grn: ['Step 02 · Inward', 'Vehicle receipt — GRN', 'Capture chassis, engine, key and battery numbers off each bike as it comes off the truck. Every unit becomes one uniquely identified stock item.'],
+      stock: ['Step 03 · Inventory', 'Vehicle stock', 'Vehicle stock is held separately from spare parts. Pick the unit to allocate against this deal — it moves from Available to Reserved.'],
+      booking: ['Step 04 · Sales', 'Customer booking', 'One customer record, many vehicles. Search by mobile before creating — the same master is used later by the service desk.'],
+      kyc: ['Step 05 · Compliance', 'KYC & documents', 'Collect only what registration, insurance or finance actually require. Numbers are masked once verified; the scan stays on the deal file.'],
+      payment: ['Step 06 · Money in', 'Payment & finance', 'Cash deals settle here; financed deals stay open until the disbursement lands. Either way the on-road total must be fully accounted before invoicing.'],
+      invoice: ['Step 07 · Billing', 'Sales invoice', 'Tax invoice against the chassis. The same figures feed the receipt, the RTO forms and the customer ledger — entered once.'],
+      rto: ['Step 08 · Statutory', 'RTO & insurance', 'Registration and policy numbers are what the service desk searches on for the next ten years. They belong on the vehicle master, not in a register.'],
+      delivery: ['Step 09 · Handover', 'Delivery note', 'Pre-delivery checks, then handover. This is the event that creates the vehicle master and starts the free-service clock.'],
+      master: ['Step 10 · Master data', 'Vehicle master created', 'The single record Sales and Service share. Everything below was captured once, earlier in this flow — nothing is re-keyed.'],
+      service: ['Step 11 · Handoff to service', 'Free service schedule', 'Generated from the delivery date. Intervals are configured per OEM policy, not hard-coded — reminders fire automatically before each due date.']
+    };
+  }
+
+  /* ── Helpers ─────────────────────────────────────────────────────────── */
+
+  rng(seed) {
+    let x = seed >>> 0;
+    return () => { x = (x * 1664525 + 1013904223) >>> 0; return x / 4294967296; };
+  }
+
+  /** On-road build-up for a model. Every charge is derived from the taxable
+   *  ex-showroom value, so the invoice, the ledger row and the reports all
+   *  agree by construction rather than by being typed in twice. */
+  charges(m) {
+    const taxable = m.taxable;
+    const cgst = Math.round(taxable * 0.14), sgst = cgst;
+    const veh = taxable + cgst + sgst;
+    const accT = 2500, accG = Math.round(accT * 0.28), acc = accT + accG;
+    const insurance = Math.round(taxable * 0.1204 / 10) * 10;
+    const rto = Math.round(taxable * 0.07426 / 10) * 10;
+    const handling = 1500, handT = Math.round(handling / 1.18);
+    const handC = Math.round((handling - handT) / 2), handS = handling - handT - handC;
+    return {
+      taxable, cgst, sgst, veh, accT, accG, acc, insurance, rto,
+      handling, handT, handC, handS,
+      onRoad: veh + acc + insurance + rto + handling
+    };
+  }
+
+  money(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
+  plural(n, one, many) { return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+  lakh(n) {
+    const a = Math.abs(n);
+    if (a >= 1e7) return '₹' + (n / 1e7).toFixed(2) + ' Cr';
+    if (a >= 1e5) return '₹' + (n / 1e5).toFixed(2) + ' L';
+    return this.money(Math.round(n));
+  }
+
+  /** Indian-format amount in words, so the invoice line is generated from the
+   *  figure rather than being a fixed string that silently goes stale. */
+  words(n) {
+    const a = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+    const b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    const two = x => x < 20 ? a[x] : b[Math.floor(x / 10)] + (x % 10 ? '-' + a[x % 10] : '');
+    const three = x => x >= 100 ? a[Math.floor(x / 100)] + ' hundred' + (x % 100 ? ' ' + two(x % 100) : '') : two(x);
+    let v = Math.round(n);
+    if (!v) return 'zero';
+    const out = [];
+    const cr = Math.floor(v / 1e7); v %= 1e7;
+    const lk = Math.floor(v / 1e5); v %= 1e5;
+    const th = Math.floor(v / 1e3); v %= 1e3;
+    if (cr) out.push(three(cr) + ' crore');
+    if (lk) out.push(three(lk) + ' lakh');
+    if (th) out.push(three(th) + ' thousand');
+    if (v) out.push(three(v));
+    return out.join(' ');
+  }
+
+  th(right) { return 'text-align:' + (right ? 'right' : 'left') + ";font:700 10px/1 'Nunito Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8b98a5;padding:10px 13px;border-bottom:1px solid #e3e3de;white-space:nowrap"; }
+  td(kind) {
+    const b = "padding:9px 13px;border-bottom:1px solid #eeeeea;font:500 12.5px/1.4 'Nunito Sans',sans-serif;color:#26313c;white-space:nowrap";
+    if (kind === 'n') return b + ';text-align:right;font-weight:700;font-variant-numeric:tabular-nums';
+    if (kind === 'b') return b + ';font-weight:700;color:#16202b';
+    if (kind === 'mut') return b + ';color:#8b98a5';
+    return b;
+  }
+  col(l, r) { return { label: l, st: this.th(r) }; }
+  c(v, k) { return { v, st: this.td(k) }; }
+
+  log(text) {
+    const t = new Date();
+    const stamp = String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+    this.setState(s => ({ audit: [{ t: stamp, text }].concat(s.audit).slice(0, 7) }));
+  }
+
+  /* ── Derived views over the master records ───────────────────────────── */
+
+  /** Units physically on the floor — available or held against a deal. */
+  floor() { return this.state.stock.filter(v => v.status === 'available' || v.status === 'reserved'); }
+  countBy(status) { return this.state.stock.filter(v => v.status === status).length; }
+  sel() { return this.state.stock.find(v => v.chassis === this.state.selected) || null; }
+  selModel() { const u = this.sel(); return u ? this.byKey[u.mk] : this.byKey['ac-rc']; }
+
+  /** Ledger rows for a period. 'today' is 17 Aug, 'mtd' the whole month;
+   *  'fytd' is the month to date plus the closed months held in history. */
+  ledger(period) {
+    const s = this.state.sales;
+    return period === 'today' ? s.filter(r => r.day === 17) : s;
+  }
+
+  augustBought() { return this.augPrior.units + (this.state.grnPosted ? this.poUnits : 0); }
+  augustPurchValue() { return this.augPrior.value + (this.state.grnPosted ? this.poValue : 0); }
+
+  /** Gross margin on the taxable base — dealer cost is quoted GST-inclusive,
+   *  so it is grossed down before the comparison. */
+  marginPct(rows) {
+    const sale = rows.reduce((a, r) => a + r.taxable, 0);
+    if (!sale) return 0;
+    const cost = rows.reduce((a, r) => a + r.cost / 1.28, 0);
+    return (sale - cost) / sale * 100;
+  }
+
+  kycOk() { const k = this.state.kyc; return k.aadhaar && k.pan && k.addr && k.photo; }
+
+  fmtDate(d) {
+    const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return String(d.getDate()).padStart(2, '0') + ' ' + m[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  /* ── Flow control ────────────────────────────────────────────────────── */
+
+  advance = () => {
+    const s = this.state, id = this.steps[s.idx].id;
+    if (id === 'grn' && s.inbound.some(v => !v.received)) return;
+    if (id === 'stock' && !s.selected) return;
+    if (id === 'kyc' && !this.kycOk()) return;
+    if (id === 'delivery' && s.pdi.some(x => !x)) return;
+
+    if (id === 'po') this.log(this.poRef + ' sent to OEM — ' + this.poUnits + ' units');
+
+    if (id === 'grn') {
+      // The received units become stock items — the same objects, restatused.
+      const added = s.inbound.map(v => Object.assign({}, v, { status: 'available', ageDays: 0 }));
+      this.setState({ stock: s.stock.concat(added), grnPosted: true });
+      this.log(this.grnRef + ' posted — ' + added.length + ' units into stock');
+    }
+
+    if (id === 'stock') {
+      this.setState({ stock: this.state.stock.map(v => v.chassis === s.selected ? Object.assign({}, v, { status: 'reserved' }) : v) });
+      this.log('Chassis …' + s.selected.slice(-6) + ' reserved');
+    }
+
+    if (id === 'booking') this.log('Booking ' + this.bookingRef + ' · advance ' + this.money(s.advance));
+    if (id === 'kyc') this.log('KYC verified — 4 documents');
+    if (id === 'payment') this.log(s.finance ? 'DP ' + this.money(s.down) + ' received · loan pending' : 'Full payment received');
+
+    if (id === 'invoice') {
+      // Invoicing writes a row into the shared ledger, so the sales register,
+      // the GST summary and every KPI pick it up immediately.
+      const u = this.sel(), m = this.selModel(), ch = this.charges(m);
+      const paid = Number(s.advance) + (s.finance ? Number(s.down) : 0);
+      const row = {
+        inv: this.liveInv, day: 17, age: 0, date: '17 Aug',
+        cust: s.customer, mk: m.k, model: m.model, variant: m.variant,
+        chassis: u ? u.chassis : '—', exec: 'Amol D.',
+        mode: s.finance ? 'Finance' : 'Cash',
+        financier: s.finance ? 'Bajaj Finance' : null,
+        amount: ch.onRoad, cost: m.cost, taxable: ch.taxable, cgst: ch.cgst, sgst: ch.sgst,
+        due: s.finance ? Math.max(0, ch.onRoad - paid) : 0,
+        delivered: false, registered: false, live: true
+      };
+      this.setState({
+        stock: this.state.stock.map(v => v.chassis === s.selected ? Object.assign({}, v, { status: 'sold' }) : v),
+        sales: [row].concat(s.sales)
+      });
+      this.log('Invoice ' + this.liveInv + ' generated · ' + this.money(ch.onRoad));
+    }
+
+    if (id === 'rto') {
+      this.setState({ sales: this.state.sales.map(r => r.live ? Object.assign({}, r, { registered: true }) : r) });
+      this.log('Registered ' + s.regNo + ' · policy saved');
+    }
+
+    if (id === 'delivery') {
+      this.setState({
+        stock: this.state.stock.map(v => v.chassis === s.selected ? Object.assign({}, v, { status: 'delivered' }) : v),
+        sales: this.state.sales.map(r => r.live ? Object.assign({}, r, { delivered: true }) : r)
+      });
+      this.log('Delivered · vehicle master created');
+    }
+
+    if (id === 'master') this.log('Free service plan generated (4)');
+
+    this.setState(st => ({ done: Object.assign({}, st.done, { [id]: true }), idx: Math.min(st.idx + 1, 10) }));
+  };
+
+  back = () => this.setState(s => ({ idx: Math.max(0, s.idx - 1) }));
+  goStep = i => () => this.setState({ view: 'flow', idx: i });
+
+  restart = () => this.setState(s => ({
+    idx: 0, done: {}, selected: null, audit: [],
+    pdi: [false, false, false, false, false, false],
+    kyc: { aadhaar: false, pan: false, addr: false, photo: false },
+    grnPosted: false,
+    inbound: s.inbound.map(v => Object.assign({}, v, { received: false })),
+    // Roll the floor and the ledger back to the state before this deal.
+    stock: s.stock.filter(v => !s.inbound.some(iv => iv.chassis === v.chassis))
+      .map(v => v.chassis === s.selected ? Object.assign({}, v, { status: 'available' }) : v),
+    sales: s.sales.filter(r => !r.live)
+  }));
+
+  /* ── Reports ─────────────────────────────────────────────────────────── */
+
+  reportVals() {
+    const s = this.state, MUT = '#8b98a5';
+    const C = (v, k) => this.c(v, k);
+    const col = (l, r) => this.col(l, r);
+    const M = n => this.money(n);
+    const per = s.period;
+
+    const rows = this.ledger(per);
+    const floor = this.floor();
+    const sorted = floor.slice().sort((a, b) => b.ageDays - a.ageDays);
+
+    const band = d => d > 90 ? '90+' : d > 60 ? '61–90' : d > 30 ? '31–60' : '0–30';
+    const short = ch => '…' + String(ch).slice(-7);
+
+    // Model performance rolls up the catalogue against the ledger and floor.
+    const modelPerf = this.models.map(m => {
+      const sold = rows.filter(r => r.mk === m.k);
+      const onFloor = floor.filter(v => v.mk === m.k).length;
+      const ordered = this.poLines.filter(l => l.mk === m.k).reduce((a, l) => a + l.qty, 0);
+      return {
+        mk: m.k, model: m.model + ' ' + m.variant,
+        sold: sold.length, stock: onFloor, ordered,
+        rev: sold.reduce((a, r) => a + r.amount, 0),
+        margin: this.marginPct(sold)
+      };
+    }).filter(r => r.sold || r.stock).sort((a, b) => b.sold - a.sold);
+
+    // Collections group what is still owed by whoever owes it.
+    const open = rows.filter(r => r.due > 0);
+    const byParty = {};
+    open.forEach(r => {
+      const party = r.financier || 'Customer balances';
+      const kind = r.financier ? 'Financier disbursement' : 'Balance on delivery';
+      (byParty[party] || (byParty[party] = { party, kind, count: 0, amt: 0, days: 0 }));
+      byParty[party].count++;
+      byParty[party].amt += r.due;
+      byParty[party].days += r.age;
+    });
+    const collections = Object.keys(byParty).map(k => byParty[k])
+      .map(p => Object.assign(p, { aged: (p.count ? Math.round(p.days / p.count) : 0) + ' d avg' }))
+      .sort((a, b) => b.amt - a.amt);
+
+    // Monthly movement: closed months as held, August derived live.
+    const augSale = rows.reduce((a, r) => a + r.amount, 0);
+    const procure = this.history.concat([{
+      month: 'Aug 2026 (MTD)', bought: this.augustBought(), sold: rows.length,
+      close: floor.length, purch: this.augustPurchValue(), sale: augSale
+    }]);
+
+    // GST: outward from the ledger, input credit from what was purchased.
+    const outVeh = rows.reduce((a, r) => a + r.taxable, 0);
+    const outAcc = rows.length * 2500;
+    const outHand = rows.length * Math.round(1500 / 1.18);
+    const inVeh = Math.round(this.augustPurchValue() / 1.28);
+    const gst = [
+      { head: 'Vehicle sales — 28%', taxable: outVeh, cgst: Math.round(outVeh * 0.14), sgst: Math.round(outVeh * 0.14), cess: 0 },
+      { head: 'Accessories — 28%', taxable: outAcc, cgst: Math.round(outAcc * 0.14), sgst: Math.round(outAcc * 0.14), cess: 0 },
+      { head: 'Handling & logistics — 18%', taxable: outHand, cgst: Math.round(outHand * 0.09), sgst: Math.round(outHand * 0.09), cess: 0 },
+      { head: 'Input credit — OEM purchases', taxable: -inVeh, cgst: -Math.round(inVeh * 0.14), sgst: -Math.round(inVeh * 0.14), cess: 0 },
+      { head: 'Input credit — spares & consumables', taxable: -184300, cgst: -25802, sgst: -25802, cess: 0 }
+    ];
+
+    const periodName = per === 'today' ? '17 Aug 2026' : per === 'mtd' ? 'August 2026' : 'FY 2026-27 to date';
+
+    const defs = {
+      register: {
+        label: 'Sales register', title: 'Vehicle sales register',
+        blurb: 'Every invoice raised in the period with executive, payment mode and what is still outstanding. Click any row to drill into the deal.',
+        tableTitle: 'Invoices raised · ' + periodName,
+        cols: [col('Invoice'), col('Date'), col('Customer'), col('Model'), col('Chassis'), col('Executive'), col('Mode'), col('Invoice value', true), col('Outstanding', true)],
+        rows: rows.map(r => ({
+          key: r.inv, drillTitle: r.inv + ' · ' + r.cust,
+          drill: [
+            { k: 'Invoice', v: r.inv }, { k: 'Date', v: r.date + ' 2026' }, { k: 'Customer', v: r.cust }, { k: 'Mobile', v: '98•••• ••••' },
+            { k: 'Vehicle', v: r.model + ' ' + r.variant }, { k: 'Chassis', v: short(r.chassis) }, { k: 'Executive', v: r.exec }, { k: 'Payment', v: r.mode + (r.financier ? ' · ' + r.financier : '') },
+            { k: 'Invoice value', v: M(r.amount) }, { k: 'Received', v: M(r.amount - r.due) }, { k: 'Outstanding', v: M(r.due) },
+            { k: 'Delivered', v: r.delivered ? 'Yes' : 'Not yet' }, { k: 'Registered', v: r.registered ? 'Yes' : 'Pending' }, { k: 'Free services', v: '4 scheduled' }
+          ],
+          cells: [C(r.inv, 'b'), C(r.date, 'mut'), C(r.cust), C(r.model + ' ' + r.variant), C(short(r.chassis), 'mut'), C(r.exec, 'mut'), C(r.mode), C(M(r.amount), 'n'), C(r.due ? M(r.due) : '—', 'n')]
+        })),
+        total: 'Total ' + M(rows.reduce((a, r) => a + r.amount, 0)) + ' · outstanding ' + M(rows.reduce((a, r) => a + r.due, 0)),
+        foot: rows.length + ' invoices · ties to the sales ledger and the GST outward register.'
+      },
+      ageing: {
+        label: 'Stock & ageing', title: 'Vehicle stock ageing',
+        blurb: 'Days since GRN, unit by unit. Anything past 60 days is capital sitting still — this is the list to discount or push to a sub-dealer.',
+        tableTitle: 'Unsold units on floor',
+        cols: [col('Model / variant'), col('Chassis'), col('Status'), col('Ageing band'), col('Days in stock', true), col('Dealer cost', true)],
+        rows: sorted.map(r => ({
+          key: r.chassis, drillTitle: r.model + ' ' + r.variant + ' · ' + short(r.chassis),
+          drill: [
+            { k: 'Model', v: r.model + ' ' + r.variant }, { k: 'Colour', v: r.colour }, { k: 'Chassis', v: r.chassis }, { k: 'Engine', v: r.engine },
+            { k: 'Days in stock', v: r.ageDays + ' d' }, { k: 'Ageing band', v: band(r.ageDays) }, { k: 'Dealer cost', v: M(r.cost) }, { k: 'Status', v: r.status }
+          ],
+          cells: [C(r.model + ' ' + r.variant, 'b'), C(short(r.chassis), 'mut'), C(r.status === 'reserved' ? 'Reserved' : 'Available', 'mut'), C(band(r.ageDays), r.ageDays > 60 ? '' : 'mut'), C(r.ageDays + ' d', 'n'), C(M(r.cost), 'n')]
+        })),
+        total: 'Blocked capital ' + M(floor.reduce((a, r) => a + r.cost, 0)),
+        foot: this.plural(floor.filter(v => v.ageDays > 90).length, 'unit') + ' past 90 days · ' + floor.filter(v => v.ageDays > 30).length + ' over 30 days.'
+      },
+      model: {
+        label: 'Model performance', title: 'Model-wise performance',
+        blurb: 'What sold against what is still on the floor, with gross margin on the taxable base. Use it to shape the next indent instead of guessing.',
+        tableTitle: 'Sales and stock by model · ' + periodName,
+        cols: [col('Model'), col('On this PO', true), col('Sold', true), col('In stock', true), col('Revenue', true), col('Gross margin %', true)],
+        rows: modelPerf.map(r => ({
+          key: r.mk, drillTitle: r.model,
+          drill: [
+            { k: 'Model', v: r.model }, { k: 'On this PO', v: r.ordered }, { k: 'Sold', v: r.sold }, { k: 'In stock', v: r.stock },
+            { k: 'Revenue', v: M(r.rev) }, { k: 'Gross margin', v: r.margin.toFixed(1) + '%' },
+            { k: 'Stock cover', v: r.sold ? Math.round(r.stock / r.sold * 17) + ' days' : '—' },
+            { k: 'Next indent', v: r.stock < 3 ? 'Increase' : 'Hold' }
+          ],
+          cells: [C(r.model, 'b'), C(r.ordered || '—', 'n'), C(r.sold, 'n'), C(r.stock, 'n'), C(M(r.rev), 'n'), C(r.margin.toFixed(1) + '%', 'n')]
+        })),
+        total: 'Revenue ' + M(modelPerf.reduce((a, r) => a + r.rev, 0)),
+        foot: 'Blended margin ' + this.marginPct(rows).toFixed(1) + '% · ' + (modelPerf[0] ? modelPerf[0].model + ' carries the volume.' : '')
+      },
+      collect: {
+        label: 'Collections', title: 'Collections & outstanding',
+        blurb: 'Invoiced vehicles whose money has not fully landed. Financier disbursements and customer balances, aged.',
+        tableTitle: 'Receivables by party',
+        cols: [col('Party'), col('Type'), col('Deals', true), col('Outstanding', true), col('Ageing', true)],
+        rows: collections.map(r => ({
+          key: r.party, drillTitle: r.party,
+          drill: [
+            { k: 'Party', v: r.party }, { k: 'Type', v: r.kind }, { k: 'Open deals', v: r.count }, { k: 'Outstanding', v: M(r.amt) },
+            { k: 'Average ageing', v: r.aged }, { k: 'Oldest', v: Math.max.apply(null, open.filter(o => (o.financier || 'Customer balances') === r.party).map(o => o.age)) + ' d' },
+            { k: 'Follow-up owner', v: 'Back office' }, { k: 'Action', v: 'Chase DO / subvention' }
+          ],
+          cells: [C(r.party, 'b'), C(r.kind, 'mut'), C(r.count, 'n'), C(M(r.amt), 'n'), C(r.aged, 'n')]
+        })),
+        total: 'Total receivable ' + M(collections.reduce((a, r) => a + r.amt, 0)),
+        foot: 'Nothing here should sit past 15 days — flag to the proprietor daily.'
+      },
+      procure: {
+        label: 'Purchase vs sales', title: 'Purchase against sales',
+        blurb: 'Units bought from the OEM against units sold, and what that left on the floor. April to July are closed; August moves as you work the flow.',
+        tableTitle: 'Monthly movement',
+        cols: [col('Month'), col('Purchased', true), col('Sold', true), col('Closing stock', true), col('Purchase value', true), col('Sales value', true)],
+        rows: procure.map(r => ({
+          key: r.month, drillTitle: r.month,
+          drill: [
+            { k: 'Month', v: r.month }, { k: 'Purchased', v: r.bought }, { k: 'Sold', v: r.sold }, { k: 'Closing stock', v: r.close },
+            { k: 'Purchase value', v: M(r.purch) }, { k: 'Sales value', v: M(r.sale) }, { k: 'Gross', v: M(r.sale - r.purch) },
+            { k: 'Stock cover', v: r.sold ? Math.round(r.close / r.sold * 30) + ' days' : '—' }
+          ],
+          cells: [C(r.month, 'b'), C(r.bought, 'n'), C(r.sold, 'n'), C(r.close, 'n'), C(M(r.purch), 'n'), C(M(r.sale), 'n')]
+        })),
+        total: 'FYTD sales ' + M(procure.reduce((a, r) => a + r.sale, 0)),
+        foot: 'Closing stock ' + floor.length + ' units · cover ' + (rows.length ? Math.round(floor.length / rows.length * 30) : 0) + ' days.'
+      },
+      gst: {
+        label: 'Tax summary', title: 'GST summary',
+        blurb: 'Output tax on vehicles, accessories and handling against input credit on OEM purchases. Net is what actually goes out on the 20th.',
+        tableTitle: 'Outward and inward · ' + periodName,
+        cols: [col('Head'), col('Taxable', true), col('CGST', true), col('SGST', true), col('Cess', true)],
+        rows: gst.map(r => ({
+          key: r.head, drillTitle: r.head,
+          drill: [
+            { k: 'Head', v: r.head }, { k: 'Taxable', v: M(r.taxable) }, { k: 'CGST', v: M(r.cgst) }, { k: 'SGST', v: M(r.sgst) },
+            { k: 'Cess', v: M(r.cess) }, { k: 'Invoices', v: String(rows.length) }, { k: 'Return', v: 'GSTR-1 / 3B' }, { k: 'Due', v: '20 Sep 2026' }
+          ],
+          cells: [C(r.head, 'b'), C(M(r.taxable), 'n'), C(M(r.cgst), 'n'), C(M(r.sgst), 'n'), C(M(r.cess), 'n')]
+        })),
+        total: 'Net payable ' + M(gst.reduce((a, r) => a + r.cgst + r.sgst + r.cess, 0)),
+        foot: 'No compensation cess — every model in the range is under 350 cc.'
+      }
+    };
+
+    const order = ['register', 'ageing', 'model', 'collect', 'procure', 'gst'];
+    const active = defs[s.report] || defs.register;
+    const drillRow = active.rows.find(r => r.key === s.drill);
+    const maxUnits = Math.max(1, Math.max.apply(null, modelPerf.map(r => r.sold)));
+
+    // KPI strip — the same reductions the dashboard uses, over the period.
+    const outstanding = rows.reduce((a, r) => a + r.due, 0);
+    const soldValue = rows.reduce((a, r) => a + r.amount, 0);
+    const hist = this.history.reduce((a, m) => ({ sold: a.sold + m.sold, sale: a.sale + m.sale, bought: a.bought + m.bought }), { sold: 0, sale: 0, bought: 0 });
+    const fy = { sold: hist.sold + rows.length, sale: hist.sale + soldValue, bought: hist.bought + this.augustBought() };
+    const aged90 = floor.filter(v => v.ageDays > 90).length;
+    const cover = rows.length ? Math.round(floor.length / rows.length * (per === 'today' ? 1 : 17)) : 0;
+
+    const kpis = per === 'fytd'
+      ? [
+        { label: 'Bikes sold', v: String(fy.sold), d: '5 months', dFg: MUT, fg: '#16202b' },
+        { label: 'Sales value', v: this.lakh(fy.sale), d: 'incl. August to date', dFg: '#1f7a52', fg: '#16202b' },
+        { label: 'Gross margin', v: this.marginPct(rows).toFixed(1) + '%', d: 'August basis', dFg: '#1f7a52', fg: '#16202b' },
+        { label: 'Purchased', v: String(fy.bought), d: 'sell-through ' + Math.round(fy.sold / fy.bought * 100) + '%', dFg: MUT, fg: '#16202b' },
+        { label: 'Outstanding', v: this.lakh(outstanding), d: open.length + ' open deals', dFg: MUT, fg: '#16202b' },
+        { label: 'Stock cover', v: cover + ' d', d: 'target 18–24 d', dFg: cover > 24 ? '#a26305' : '#1f7a52', fg: '#16202b' }
+      ]
+      : [
+        { label: 'Bikes sold', v: String(rows.length), d: periodName, dFg: MUT, fg: '#16202b' },
+        { label: 'Sales value', v: this.lakh(soldValue), d: 'avg ' + this.lakh(rows.length ? soldValue / rows.length : 0) + ' / unit', dFg: MUT, fg: '#16202b' },
+        { label: 'Gross margin', v: this.marginPct(rows).toFixed(1) + '%', d: 'on taxable base', dFg: '#1f7a52', fg: '#16202b' },
+        { label: 'Purchased', v: String(this.augustBought()), d: 'OEM value ' + this.lakh(this.augustPurchValue()), dFg: MUT, fg: '#16202b' },
+        { label: 'Outstanding', v: this.lakh(outstanding), d: open.length + ' with financiers', dFg: '#a26305', fg: outstanding ? '#a26305' : '#1f7a52' },
+        { label: 'Stock on floor', v: String(floor.length), d: this.plural(aged90, 'unit') + ' 90+ days', dFg: aged90 ? '#b23c1c' : MUT, fg: '#16202b' }
+      ];
+
+    const periodDefs = [{ id: 'today', label: 'Today' }, { id: 'mtd', label: 'Month to date' }, { id: 'fytd', label: 'FY to date' }];
+
+    // Exceptions are counted off the records, not listed by hand.
+    const notDelivered = rows.filter(r => !r.delivered);
+    const doPending = rows.filter(r => r.due > 0 && r.financier && r.age > 7);
+    const regPending = rows.filter(r => !r.registered && r.age > 14);
+    const unallocated = this.openDeals.filter(d => !d.chassis);
+
+    return {
+      repOrder: order, repDefs: defs, repActive: active,
+      repTitle: active.title, repBlurb: active.blurb, repTableTitle: active.tableTitle,
+      repCols: active.cols,
+      repRows: active.rows.map(r => ({ cells: r.cells, drill: () => this.setState({ drill: r.key }) })),
+      repRowCount: active.rows.length + ' rows',
+      repTotal: active.total, repFootNote: active.foot,
+      hasDrill: !!drillRow, drillTitle: drillRow ? drillRow.drillTitle : '', drillFields: drillRow ? drillRow.drill : [],
+      closeDrill: () => this.setState({ drill: null }),
+      repKpis: kpis,
+      periods: periodDefs.map(pd => ({
+        label: pd.label, go: () => this.setState({ period: pd.id, drill: null }),
+        bg: per === pd.id ? '#0f2438' : '#ffffff',
+        fg: per === pd.id ? '#ffffff' : '#4a5a68',
+        bd: per === pd.id ? '#0f2438' : '#d8d8d2'
+      })),
+      periodLabel: periodName,
+      exceptions: [
+        { label: 'Invoiced, not yet delivered', v: this.plural(notDelivered.length, 'unit'), fg: notDelivered.length ? '#b23c1c' : '#1f7a52' },
+        { label: 'Financier DO pending beyond 7 days', v: this.plural(doPending.length, 'deal') + ' · ' + this.lakh(doPending.reduce((a, r) => a + r.due, 0)), fg: doPending.length ? '#a26305' : '#1f7a52' },
+        { label: 'Registration pending beyond 14 days', v: this.plural(regPending.length, 'vehicle'), fg: regPending.length ? '#a26305' : '#1f7a52' },
+        { label: 'Stock ageing over 90 days', v: this.plural(aged90, 'unit') + ' · ' + this.lakh(floor.filter(v => v.ageDays > 90).reduce((a, v) => a + v.cost, 0)), fg: aged90 ? '#b23c1c' : '#1f7a52' },
+        { label: 'Booking advance held, no allocation', v: this.plural(unallocated.length, 'booking'), fg: unallocated.length ? '#a26305' : '#1f7a52' }
+      ],
+      bars: modelPerf.slice(0, 6).map(r => ({ label: r.model, n: r.sold, w: Math.round(r.sold / maxUnits * 100) + '%' })),
+      repSoldValue: soldValue, repOutstanding: outstanding, repOpenCount: open.length,
+      repAged90: aged90, repCover: cover
+    };
+  }
+
+  /* ── Render ──────────────────────────────────────────────────────────── */
+
+  renderVals() {
+    const s = this.state, cur = this.steps[s.idx], v = this.sel();
+    const ACC = '#da5c29', MUT = '#8b98a5';
+    const C = (x, k) => this.c(x, k);
+    const col = (l, r) => this.col(l, r);
+    const rv = this.reportVals();
+
+    const floor = this.floor();
+    const mtd = this.ledger('mtd');
+
+    const p = {};
+    this.steps.forEach(st => { p[st.id] = s.view === 'flow' && st.id === cur.id; });
+
+    const steps = this.steps.map((st, i) => {
+      const isCur = s.view === 'flow' && i === s.idx, isDone = !!s.done[st.id];
+      return {
+        label: st.label, go: this.goStep(i),
+        mark: isDone ? '✓' : String(i + 1),
+        dotBg: isDone ? ACC : (isCur ? '#ffffff' : 'transparent'),
+        dotFg: isDone ? '#ffffff' : (isCur ? '#0f2438' : '#7e93a8'),
+        dotBd: isDone ? ACC : (isCur ? '#ffffff' : '#39536d'),
+        bg: isCur ? '#2e445e' : 'transparent',
+        fg: isCur ? '#ffffff' : (isDone ? '#cbd7e2' : '#9db0c2'),
+        weight: isCur ? '700' : '500'
+      };
+    });
+
+    const navDef = [
+      { label: 'OVERVIEW', items: [{ id: 'dash', label: 'Dashboard' }] },
+      { label: 'SALES', items: [{ id: 'flow', label: 'Vehicle sales', steps: true, badge: (s.idx + 1) + '/11' }, { id: 'stockView', label: 'Vehicle stock', badge: String(floor.length) }] },
+      { label: 'SERVICE', items: [{ id: 'serviceView', label: 'Free service plan' }] },
+      { label: 'REPORTS', items: rv.repOrder.map(id => ({ id: 'rep:' + id, label: rv.repDefs[id].label })) }
+    ];
+
+    const goNav = id => () => {
+      if (id === 'dash') return this.setState({ view: 'dash' });
+      if (id === 'flow') return this.setState({ view: 'flow' });
+      if (id === 'stockView') return this.setState({ view: 'flow', idx: 2 });
+      if (id === 'serviceView') return this.setState({ view: 'flow', idx: 10 });
+      if (id.indexOf('rep:') === 0) return this.setState({ view: 'reports', report: id.slice(4), drill: null });
+    };
+    const isActiveNav = id => {
+      if (id === 'dash') return s.view === 'dash';
+      if (id === 'flow') return s.view === 'flow';
+      if (id === 'stockView') return s.view === 'flow' && s.idx === 2;
+      if (id === 'serviceView') return s.view === 'flow' && s.idx === 10;
+      return s.view === 'reports' && id === 'rep:' + s.report;
+    };
+
+    const nav = navDef.map(g => ({
+      label: g.label,
+      items: g.items.map(it => {
+        const on = isActiveNav(it.id);
+        return {
+          label: it.label, go: goNav(it.id), badge: it.badge || '',
+          showSteps: !!it.steps && s.view === 'flow',
+          bg: on ? ACC : 'transparent',
+          fg: on ? '#ffffff' : '#cbd7e2',
+          weight: on ? '700' : '500',
+          badgeFg: on ? '#ffe2d6' : '#7e93a8'
+        };
+      })
+    }));
+
+    /* Step 02 — inbound units, straight off the PO. */
+    const inbound = s.inbound.map((iv, i) => ({
+      model: iv.model, variant: iv.variant, colour: iv.colour,
+      chassis: iv.chassis, engine: iv.engine, keyNo: iv.keyNo, battery: iv.battery,
+      toggle: () => this.setState(st => ({ inbound: st.inbound.map((x, j) => j === i ? Object.assign({}, x, { received: !x.received }) : x) })),
+      chkMark: iv.received ? '✓' : '',
+      chkBg: iv.received ? ACC : '#fff',
+      chkBd: iv.received ? ACC : '#c9c9c2',
+      chkFg: iv.received ? '#26313c' : MUT,
+      chkLabel: iv.received ? 'Verified' : 'Mark received'
+    }));
+    const pending = s.inbound.filter(x => !x.received).length;
+
+    /* Step 03 — the floor, plus whatever this deal is holding. */
+    const badgeMap = {
+      available: ['Available', '#e7f2ea', '#1f7a52'],
+      reserved: ['Reserved', '#fcf1dd', '#a26305'],
+      sold: ['Sold', '#fdf1eb', '#b0451c'],
+      delivered: ['Delivered', '#eef0f2', '#4a5a68']
+    };
+    const stockRows = s.stock.map(sv => {
+      const b = badgeMap[sv.status] || badgeMap.available;
+      const isSel = sv.chassis === s.selected;
+      const canPick = sv.status === 'available' || isSel;
+      return {
+        model: sv.model, variant: sv.variant, colour: sv.colour, aged: sv.ageDays + ' d',
+        chassisShort: '…' + sv.chassis.slice(-9),
+        badge: isSel ? 'Allocated' : b[0], badgeBg: isSel ? '#fdf1eb' : b[1], badgeFg: isSel ? '#b0451c' : b[2],
+        rowBg: isSel ? '#fefaf7' : 'transparent',
+        select: canPick ? (() => this.setState({ selected: isSel ? null : sv.chassis })) : (() => {}),
+        act: isSel ? 'Deselect' : (canPick ? 'Allocate' : '—'),
+        actFg: isSel ? '#b23c1c' : (canPick ? '#b0451c' : '#c5c5be'),
+        actCur: canPick ? 'pointer' : 'default'
+      };
+    });
+
+    const kycDefs = [
+      { k: 'aadhaar', name: 'Aadhaar', why: 'Address proof for registration', number: 'XXXX XXXX 4417' },
+      { k: 'pan', name: 'PAN', why: 'Required by financier', number: 'AWRPP••••K' },
+      { k: 'addr', name: 'Electricity bill', why: 'Secondary address proof', number: 'MSEDCL 172440918' },
+      { k: 'photo', name: 'Photograph + signature', why: 'Form 20 / delivery note', number: '2 files' }
+    ];
+
+    /* Money — one build-up, used by the settlement panel, the invoice and
+       the ledger row that invoicing writes. */
+    const m = this.selModel();
+    const ch = this.charges(m);
+    const onRoad = ch.onRoad;
+    const paid = Number(s.advance) + (s.finance ? Number(s.down) : 0);
+    const balance = s.finance ? Math.max(0, onRoad - paid) : 0;
+
+    const invoiceLines = [
+      [(v ? v.model + ' ' + v.variant : m.model + ' ' + m.variant) + ' — ex-showroom', '87112019', ch.taxable, ch.cgst, ch.sgst, ch.veh],
+      ['Accessories — fitment pack', '87141090', ch.accT, Math.round(ch.accG / 2), ch.accG - Math.round(ch.accG / 2), ch.acc],
+      ['Insurance — OD 1 yr + TP 5 yr', '997134', null, null, null, ch.insurance],
+      ['Registration & road tax', '—', null, null, null, ch.rto],
+      ['Handling & logistics', '996511', ch.handT, ch.handC, ch.handS, ch.handling]
+    ].map(r => ({
+      cells: [C(r[0], 'b'), C(r[1], 'mut'), C(r[2] === null ? '—' : this.money(r[2]), 'n'), C(r[3] === null ? '—' : this.money(r[3]), 'n'), C(r[4] === null ? '—' : this.money(r[4]), 'n'), C(this.money(r[5]), 'n')]
+    }));
+
+    /* Step 11 — schedule generated off the delivery date, not typed. */
+    const delivery = s.deliveryDate;
+    const plan = [
+      { name: '1st free service', days: 45, km: '750 – 1,000 km' },
+      { name: '2nd free service', days: 180, km: '4,000 – 5,000 km' },
+      { name: '3rd free service', days: 365, km: '8,000 – 9,000 km' },
+      { name: '4th free service', days: 545, km: '12,000 – 13,000 km' }
+    ];
+    const freeServices = plan.map(f => {
+      const d = new Date(delivery.getTime() + f.days * 86400000);
+      const r = new Date(d.getTime() - 7 * 86400000);
+      return { cells: [C(f.name, 'b'), C(this.fmtDate(d)), C(f.km), C('WhatsApp + SMS, ' + this.fmtDate(r), 'mut'), C('Scheduled')] };
+    });
+
+    const vLine = v ? v.model + ' ' + v.variant + ' · ' + v.colour : 'Not allocated yet';
+    const meta = this.meta[cur.id] || ['', '', ''];
+
+    const crumb = s.view === 'dash' ? 'Overview' : s.view === 'reports' ? 'Reports · ' + rv.periodLabel : 'Vehicle sales · ' + meta[0];
+    const title = s.view === 'dash' ? 'Dashboard' : s.view === 'reports' ? rv.repTitle : meta[1];
+    const sub = s.view === 'dash'
+      ? 'Purchase to sales for the vehicle business: what was bought from Suzuki, what is on the floor, and what has been invoiced and delivered.'
+      : s.view === 'reports' ? rv.repBlurb : meta[2];
+
+    /* Dashboard — the same reductions the report KPI strip uses. */
+    const mtdValue = mtd.reduce((a, r) => a + r.amount, 0);
+    const outstanding = mtd.reduce((a, r) => a + r.due, 0);
+    const aged30 = floor.filter(x => x.ageDays > 30).length;
+
+    /* Deals in progress: the deal book plus the live deal at its real stage. */
+    const liveStage = s.view === 'flow' || s.idx > 0 ? cur.label : 'Purchase order';
+    const pipe = [{
+      ref: this.liveRef.replace('/26-27', ''), cust: s.customer,
+      model: v ? v.model + ' ' + v.variant : m.model + ' ' + m.variant,
+      stage: liveStage + (s.done.delivery ? ' · delivered' : ''), value: onRoad, live: true
+    }].concat(this.openDeals.map(d => ({
+      ref: d.ref, cust: d.cust, model: d.model,
+      stage: d.stage, value: d.value, live: false
+    })));
+
+    const stageLoad = [
+      { label: 'On order (PO)', n: s.grnPosted ? 0 : this.poUnits, color: '#0f2438' },
+      { label: 'Available on floor', n: this.countBy('available'), color: '#0f2438' },
+      { label: 'Bookings open', n: pipe.length, color: '#da5c29' },
+      { label: 'Allocated / reserved', n: this.countBy('reserved'), color: '#a26305' },
+      { label: 'Invoiced, not delivered', n: mtd.filter(r => !r.delivered).length, color: '#a26305' },
+      { label: 'Registration pending', n: mtd.filter(r => !r.registered).length, color: '#1f7a52' }
+    ];
+    const stageMax = Math.max(1, Math.max.apply(null, stageLoad.map(x => x.n)));
+
+    return Object.assign(rv, {
+      dealerName: this.props.dealerName ?? 'Balaji Suzuki',
+      nav, steps, p,
+      isDash: s.view === 'dash', isFlow: s.view === 'flow', isReports: s.view === 'reports',
+      crumb, pageTitle: title, pageSub: sub,
+      dealRef: this.liveRef,
+
+      advance: this.advance, back: this.back, restart: this.restart,
+
+      kpis: [
+        { label: 'Bikes sold · MTD', v: String(mtd.length), d: this.lakh(mtdValue) + ' invoiced', fg: '#1f7a52' },
+        { label: 'Sales value · MTD', v: this.lakh(mtdValue), d: 'avg ' + this.lakh(mtd.length ? mtdValue / mtd.length : 0) + ' / unit', fg: '#16202b' },
+        { label: 'Stock on floor', v: String(floor.length), d: this.plural(rv.repAged90, 'unit') + ' past 90 days · ' + aged30 + ' unsold over 30 d', fg: '#a26305' },
+        { label: 'Outstanding', v: this.lakh(outstanding), d: rv.repOpenCount + ' with financiers', fg: outstanding ? '#b23c1c' : '#1f7a52' }
+      ],
+      pipeCols: [col('Deal'), col('Customer'), col('Vehicle'), col('Stage'), col('Value', true)],
+      pipeRows: pipe.map(r => ({
+        cells: [C(r.ref, 'b'), C(r.cust), C(r.model), C(r.stage, r.live ? 'b' : ''), C(this.money(r.value), 'n')]
+      })),
+      stageLoad: stageLoad.map(x => ({
+        label: x.label, n: x.n, color: x.color,
+        w: Math.round(x.n / stageMax * 100) + '%'
+      })),
+
+      poRef: this.poRef,
+      poCols: [col('Model'), col('Variant'), col('Colour'), col('Qty', true), col('Dealer price', true), col('Line value', true)],
+      poLines: this.poLines.map(l => ({ cells: [C(l.model, 'b'), C(l.variant), C(l.colour, 'mut'), C(l.qty, 'n'), C(this.money(l.rate), 'n'), C(this.money(l.qty * l.rate), 'n')] })),
+      poUnits: this.poUnits,
+      poValue: this.money(this.poValue),
+
+      grnCols: [col('Model / colour'), col('Chassis no.'), col('Engine no.'), col('Key'), col('Battery'), col('Check')],
+      inbound,
+      grnNote: pending
+        ? pending + ' of ' + s.inbound.length + ' units still to be physically checked.'
+        : 'All ' + s.inbound.length + ' units checked — chassis and engine numbers match the OEM invoice.',
+      grnBtnBg: pending ? '#c5c5be' : ACC,
+      grnBtnCur: pending ? 'not-allowed' : 'pointer',
+
+      stockCols: [col('Model / variant'), col('Colour'), col('Chassis'), col('Aged', true), col('Status'), col('')],
+      stockRows,
+      stockTiles: [
+        { label: 'Units on floor', n: floor.length, fg: '#16202b' },
+        { label: 'Available', n: this.countBy('available'), fg: '#1f7a52' },
+        { label: 'Reserved', n: this.countBy('reserved'), fg: '#a26305' },
+        { label: 'Sold / delivered', n: this.countBy('sold') + this.countBy('delivered'), fg: '#b0451c' }
+      ],
+      allocNote: v ? 'Allocated ' + v.model + ' ' + v.variant + ' · …' + v.chassis.slice(-6) : 'Select an available unit to allocate to this deal.',
+      allocBtnBg: v ? ACC : '#c5c5be',
+      allocBtnCur: v ? 'pointer' : 'not-allowed',
+
+      h: {
+        customer: e => this.setState({ customer: e.target.value }),
+        mobile: e => this.setState({ mobile: e.target.value }),
+        address: e => this.setState({ address: e.target.value }),
+        advance: e => this.setState({ advance: Number(e.target.value.replace(/[^0-9]/g, '')) || 0 }),
+        down: e => this.setState({ down: Number(e.target.value.replace(/[^0-9]/g, '')) || 0 }),
+        regNo: e => this.setState({ regNo: e.target.value })
+      },
+      bookingRef: this.bookingRef,
+      dealVehicleLine: vLine,
+      dealChassis: v ? v.chassis : '—',
+      dealEngine: v ? v.engine : '—',
+      dealAdvance: String(s.advance),
+      dealDown: String(s.down),
+      dealDelivery: this.fmtDate(delivery),
+      accLine: 'Fitment pack — ' + this.money(ch.acc),
+
+      kycRows: kycDefs.map(d => {
+        const ok = s.kyc[d.k];
+        return {
+          name: d.name, why: d.why, number: d.number,
+          status: ok ? 'Verified' : 'Awaiting check',
+          stFg: ok ? '#1f7a52' : '#a26305',
+          btn: ok ? 'Undo' : 'Verify',
+          btnBg: ok ? '#fff' : ACC, btnFg: ok ? '#6b7a89' : '#fff', btnBd: ok ? '#d8d8d2' : ACC,
+          toggle: () => this.setState(st => ({ kyc: Object.assign({}, st.kyc, { [d.k]: !st.kyc[d.k] }) }))
+        };
+      }),
+      kycNote: this.kycOk() ? 'All documents verified — deal can proceed to payment.' : 'Only documents required for registration, insurance or finance are collected.',
+      kycBtnBg: this.kycOk() ? ACC : '#c5c5be',
+      kycBtnCur: this.kycOk() ? 'pointer' : 'not-allowed',
+
+      isFinance: s.finance, isCash: !s.finance,
+      setCash: () => this.setState({ finance: false }),
+      setFinance: () => this.setState({ finance: true }),
+      cashBg: s.finance ? '#fff' : '#0f2438', cashFg: s.finance ? '#4a5a68' : '#ffffff', cashBd: s.finance ? '#d8d8d2' : '#0f2438',
+      finBg: s.finance ? '#0f2438' : '#fff', finFg: s.finance ? '#ffffff' : '#4a5a68', finBd: s.finance ? '#0f2438' : '#d8d8d2',
+      settleRows: [
+        { label: 'On-road total', amt: this.money(onRoad), fg: '#16202b' },
+        { label: 'Booking advance (' + this.bookingRef.replace('BKG/26-27/', 'BKG/') + ')', amt: '− ' + this.money(s.advance), fg: '#1f7a52' },
+        s.finance
+          ? { label: 'Down payment', amt: '− ' + this.money(s.down), fg: '#1f7a52' }
+          : { label: 'Payment on delivery', amt: '− ' + this.money(onRoad - s.advance), fg: '#1f7a52' },
+        s.finance
+          ? { label: 'Loan (Bajaj Finance, 24 mo)', amt: this.money(balance), fg: '#a26305' }
+          : { label: 'Finance', amt: 'Not applicable', fg: MUT }
+      ],
+      balance: this.money(balance), balFg: balance > 0 ? '#a26305' : '#1f7a52',
+      settleNote: s.finance ? 'Loan balance stays outstanding in the customer ledger until the financier disburses.' : 'Deal fully settled — no outstanding against this chassis.',
+
+      custName: s.customer, custMobile: s.mobile, custAddress: s.address,
+      invRef: this.liveInv,
+      invCols: [col('Particulars'), col('HSN'), col('Taxable', true), col('CGST', true), col('SGST', true), col('Amount', true)],
+      invoiceLines, onRoad: this.money(onRoad),
+      amountWords: 'Amount in words: Rupees ' + this.words(onRoad) + ' only. Vehicle sold against chassis; warranty per OEM terms.',
+
+      pdiRows: this.pdiLabels.map((label, i) => ({
+        label, toggle: () => this.setState(st => ({ pdi: st.pdi.map((x, j) => j === i ? !x : x) })),
+        mark: s.pdi[i] ? '✓' : '', bg: s.pdi[i] ? ACC : '#fff', bd: s.pdi[i] ? ACC : '#c9c9c2',
+        fg: s.pdi[i] ? '#26313c' : '#6b7a89'
+      })),
+      pdiCount: s.pdi.filter(x => !x).length ? s.pdi.filter(x => !x).length + ' of 6 pending' : 'all clear',
+      pdiBtnBg: s.pdi.some(x => !x) ? '#c5c5be' : ACC,
+      pdiBtnCur: s.pdi.some(x => !x) ? 'not-allowed' : 'pointer',
+
+      regNo: s.regNo,
+      masterFields: [
+        { k: 'Model / variant', v: v ? v.model + ' ' + v.variant : '—' },
+        { k: 'Colour', v: v ? v.colour : '—' },
+        { k: 'Chassis no.', v: v ? v.chassis : '—' },
+        { k: 'Engine no.', v: v ? v.engine : '—' },
+        { k: 'Registration', v: s.regNo },
+        { k: 'RTO', v: 'MH-15 Nashik' },
+        { k: 'Battery no.', v: v ? v.battery : '—' },
+        { k: 'Key no.', v: v ? v.keyNo : '—' },
+        { k: 'Owner', v: s.customer },
+        { k: 'Mobile', v: s.mobile },
+        { k: 'Purchase (GRN)', v: s.grnPosted ? this.grnRef : '—' },
+        { k: 'Delivery date', v: this.fmtDate(delivery) },
+        { k: 'Invoice', v: s.done.invoice ? this.liveInv : '—' },
+        { k: 'Insurance valid till', v: '16 Aug 2027' },
+        { k: 'Warranty', v: '5 yr / 50,000 km' },
+        { k: 'Free services', v: '4 scheduled' }
+      ],
+      fsCols: [col('Service'), col('Due by date'), col('Due at km'), col('Reminder'), col('Status')],
+      freeServices,
+
+      /* Deal context — rendered on every page, not just inside the flow. */
+      context: [
+        { k: 'Deal', v: this.liveRef, fg: '#16202b' },
+        { k: 'Customer', v: s.customer, fg: '#16202b' },
+        { k: 'Mobile', v: s.mobile, fg: '#26313c' },
+        { k: 'Stage', v: cur.label, fg: '#26313c' },
+        { k: 'Vehicle', v: v ? v.model + ' ' + v.variant : 'unallocated', fg: v ? '#16202b' : '#a9b3bd' },
+        { k: 'Chassis', v: v ? '…' + v.chassis.slice(-7) : '—', fg: v ? '#26313c' : '#a9b3bd' },
+        { k: 'Status', v: v ? (badgeMap[v.status] || ['—'])[0] : 'draft', fg: '#26313c' },
+        { k: 'Invoice', v: s.done.invoice ? this.liveInv : 'not raised', fg: s.done.invoice ? '#16202b' : '#a9b3bd' },
+        { k: 'On-road', v: this.money(onRoad), fg: '#16202b' },
+        { k: 'Balance', v: this.money(balance), fg: balance > 0 ? '#a26305' : '#1f7a52' }
+      ],
+      audit: s.audit, auditEmpty: s.audit.length === 0
+    });
+  }
+}
+</script>
+</body>
+</html>
