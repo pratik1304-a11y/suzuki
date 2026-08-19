@@ -821,6 +821,101 @@
         </div>
       </sc-if>
 
+      <sc-if value="{{ isSvc }}">
+        <div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px;margin-bottom:12px">
+            <sc-for list="{{ svcKpis }}" as="k" hint-placeholder-count="4">
+              <div style="background:{{ k.bg }};border:1px solid {{ k.bd }};border-radius:14px;box-shadow:0 1px 2px rgba(23,24,43,.04), 0 10px 26px rgba(23,24,43,.045);padding:13px 15px">
+                <div style="font:700 10px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#7d8296;margin-bottom:8px">{{ k.label }}</div>
+                <div style="font:700 22px/1 'Plus Jakarta Sans',sans-serif;color:{{ k.fg }};font-variant-numeric:tabular-nums">{{ k.v }}</div>
+                <div style="margin-top:6px;font:500 11px/1.35 'Plus Jakarta Sans',sans-serif;color:#7d8296">{{ k.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="background:#ffffff;border:1px solid #e8e9f1;border-radius:14px;box-shadow:0 1px 2px rgba(23,24,43,.04), 0 10px 26px rgba(23,24,43,.045);overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid #eeeff5">
+              <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+                <sc-for list="{{ svcChips }}" as="ch" hint-placeholder-count="4">
+                  <span onClick="{{ ch.go }}" style="padding:7px 13px;border-radius:10px;background:{{ ch.bg }};border:1px solid {{ ch.bd }};font:700 11.5px/1.2 'Plus Jakarta Sans',sans-serif;color:{{ ch.fg }};cursor:pointer">{{ ch.label }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;flex:none">
+                <span style="font:600 11px/1.2 'Plus Jakarta Sans',sans-serif;color:#7d8296">{{ svcRowCount }}</span>
+                <span style="padding:9px 16px;border-radius:10px;border:none;background:linear-gradient(135deg,#6c5cf0,#a855f7);box-shadow:0 8px 20px rgba(108,92,240,.36);color:#fff;font:700 12px/1.2 'Plus Jakarta Sans',sans-serif;cursor:pointer" style-hover="background:linear-gradient(135deg,#5b4bdc,#9333ea)">{{ svcAction }}</span>
+              </div>
+            </div>
+            <div style="overflow-x:auto">
+              <table style="min-width:720px;width:100%;border-collapse:collapse">
+                <thead>
+                  <tr>
+                    <sc-for list="{{ svcCols }}" as="c" hint-placeholder-count="6">
+                      <th style="{{ c.st }}">{{ c.label }}</th>
+                    </sc-for>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ svcRows }}" as="r" hint-placeholder-count="7">
+                    <tr onClick="{{ r.pick }}" style="cursor:pointer;background:{{ r.bg }}" style-hover="background:#f9f8ff">
+                      <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6">
+                        <td style="{{ c.st }}">{{ c.v }}</td>
+                      </sc-for>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:12px 14px;background:#f8f8fc;border-top:1px solid #eeeff5">
+              <span style="font:500 11.5px/1.4 'Plus Jakarta Sans',sans-serif;color:#7d8296">{{ svcNote }}</span>
+              <span style="font:700 12.5px/1.4 'Plus Jakarta Sans',sans-serif;font-variant-numeric:tabular-nums">{{ svcTotal }}</span>
+            </div>
+          </div>
+
+          <sc-if value="{{ svcHasPicked }}">
+            <div style="margin-top:11px;background:#ffffff;border:1px solid #d6d2fb;border-radius:14px;box-shadow:0 10px 30px rgba(84,68,220,.10);overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:11px 14px;background:#f4f2ff;border-bottom:1px solid #ddd8fc">
+                <span style="font:700 12.5px/1.2 'Plus Jakarta Sans',sans-serif;color:#4436c4">{{ svcPickedTitle }}</span>
+                <span onClick="{{ svcClear }}" style="font:700 11.5px/1.2 'Plus Jakarta Sans',sans-serif;color:#5b4bdc;cursor:pointer">Close</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr))">
+                <sc-for list="{{ svcPickedFields }}" as="f" hint-placeholder-count="8">
+                  <div style="padding:11px 14px;border-right:1px solid #f2f4f8;border-bottom:1px solid #f2f4f8">
+                    <div style="font:700 10px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#7d8296;margin-bottom:5px">{{ f.k }}</div>
+                    <div style="font:600 12.5px/1.4 'Plus Jakarta Sans',sans-serif">{{ f.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:11px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px">
+            <sc-if value="{{ svcHasBars }}">
+              <div style="background:#ffffff;border:1px solid #e8e9f1;border-radius:14px;box-shadow:0 1px 2px rgba(23,24,43,.04), 0 10px 26px rgba(23,24,43,.045);padding:13px 15px">
+                <div style="font:700 13px/1.2 'Plus Jakarta Sans',sans-serif;margin-bottom:10px">{{ svcBarsTitle }}</div>
+                <sc-for list="{{ svcBars }}" as="b" hint-placeholder-count="5">
+                  <div style="display:grid;grid-template-columns:minmax(96px,132px) 1fr 36px;align-items:center;gap:10px;padding:5px 0">
+                    <span style="font:500 11.5px/1.3 'Plus Jakarta Sans',sans-serif;color:#2a2c40;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.label }}</span>
+                    <span style="display:block;height:7px;border-radius:5px;background:#eaeaf2;overflow:hidden"><span style="display:block;height:7px;border-radius:5px;background:{{ b.color }};width:{{ b.w }}"></span></span>
+                    <span style="font:700 11px/1.3 'Plus Jakarta Sans',sans-serif;color:#2a2c40;text-align:right;font-variant-numeric:tabular-nums">{{ b.n }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ svcHasSide }}">
+              <div style="background:#ffffff;border:1px solid #e8e9f1;border-radius:14px;box-shadow:0 1px 2px rgba(23,24,43,.04), 0 10px 26px rgba(23,24,43,.045);padding:13px 15px">
+                <div style="font:700 13px/1.2 'Plus Jakarta Sans',sans-serif;margin-bottom:9px">{{ svcSideTitle }}</div>
+                <sc-for list="{{ svcSide }}" as="e" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #f0f1f7">
+                    <span style="font:500 12px/1.4 'Plus Jakarta Sans',sans-serif;color:#2a2c40">{{ e.label }}</span>
+                    <span style="font:700 11.5px/1.4 'Plus Jakarta Sans',sans-serif;color:{{ e.fg }};flex:none">{{ e.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
     </div>
   </div>
 </div>
@@ -854,6 +949,7 @@ class Component extends DCLogic {
       regNo: 'MH-15-EK-4482',
       pdi: [false, false, false, false, false, false],
       audit: [], report: 'register', period: 'mtd', drill: null,
+      svc: 'svc_jobcard', svcPick: null, svcChip: 0,
       vw: typeof window !== 'undefined' ? window.innerWidth : 1440, drawer: false
     };
 
@@ -953,6 +1049,275 @@ class Component extends DCLogic {
   fmtDate(d) {
     const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return String(d.getDate()).padStart(2, '0') + ' ' + m[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  serviceDefs() {
+    const C = (v, k) => this.c(v, k);
+    const col = (l, r) => this.col(l, r);
+    const M = n => this.money(n);
+    const TINT = [
+      { bg: '#efecff', bd: '#d8d0fb', fg: '#4b34c9' },
+      { bg: '#e7f2ff', bd: '#c9e0fa', fg: '#12609e' },
+      { bg: '#e9f9f0', bd: '#c3ecd6', fg: '#0b7a4e' },
+      { bg: '#fdf3dd', bd: '#f4e0ae', fg: '#a06a05' },
+      { bg: '#fdedf4', bd: '#f6cede', fg: '#c2306b' },
+      { bg: '#e7f7fa', bd: '#bfe6ee', fg: '#0a6f80' }
+    ];
+    const kp = (label, v, d, i) => Object.assign({ label, v, d }, TINT[i % 6]);
+
+    return {
+      svc_appt: {
+        label: 'Appointments', crumb: 'Service station · Front desk', title: 'Service appointments',
+        sub: 'Bookings taken on call, WhatsApp or the reminder link, slotted against bay capacity so the workshop is never over-promised.',
+        action: 'Book appointment',
+        chips: ['Today', 'Tomorrow', 'This week', 'No-shows'],
+        kpis: [kp('Slots today', '18', 'capacity 22', 0), kp('Confirmed', '14', '4 tentative', 2), kp('Walk-ins so far', '5', 'above average', 1), kp('No-shows this week', '3', 'follow up', 4)],
+        cols: [col('Time'), col('Customer'), col('Vehicle'), col('Registration'), col('Service type'), col('Source'), col('Status')],
+        rows: [
+          ['09:00', 'Sanjay R. Pawar', 'Access 125 RC', 'MH-15-EK-4482', '1st free service', 'WhatsApp reminder', ['Checked in', 2]],
+          ['09:45', 'Kavita Jadhav', 'Access 125 Std', 'MH-15-DZ-1188', 'Paid service', 'Phone call', ['Checked in', 2]],
+          ['10:30', 'Ashwini Patil', 'Access 125 Std', 'MH-15-CV-2019', '3rd free service', 'Reminder SMS', ['Confirmed', 1]],
+          ['11:15', 'Ganesh Wagh', 'Avenis 125 RC', 'MH-15-DY-7742', 'Running repair — brakes', 'Walk-in', ['Waiting', 3]],
+          ['12:00', 'Imran Qureshi', 'Burgman Street 125', 'MH-15-DK-3390', 'Accident repair estimate', 'Insurance desk', ['Confirmed', 1]],
+          ['15:30', 'Rehana Shaikh', 'Burgman Street EX', 'MH-15-EK-4390', 'Pre-delivery check-up', 'Sales handover', ['Tentative', 3]],
+          ['16:15', 'Nilesh Bhoir', 'Gixxer SF 155 RC', 'MH-15-EJ-9921', 'Oil change', 'WhatsApp reminder', ['No-show', 4]]
+        ].map(r => ({
+          key: r[0] + r[3], title: r[0] + ' · ' + r[1] + ' · ' + r[3],
+          fields: [
+            { k: 'Slot', v: r[0] + ', 19 Aug 2026' }, { k: 'Customer', v: r[1] }, { k: 'Mobile', v: '98•••• ••••' }, { k: 'Vehicle', v: r[2] },
+            { k: 'Registration', v: r[3] }, { k: 'Service type', v: r[4] }, { k: 'Booked via', v: r[5] }, { k: 'Status', v: r[6][0] },
+            { k: 'Assigned bay', v: 'Auto on check-in' }, { k: 'Last visit', v: '14 Feb 2026' }, { k: 'Odometer (last)', v: '4,820 km' }, { k: 'Free services left', v: '3' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2]), C(r[3]), C(r[4]), C(r[5], 'mut'), C(r[6][0], r[6][1] === 2 ? 'mut' : '')]
+        })),
+        note: 'Appointment slots respect bay capacity — the desk cannot overbook a bay that is already full.',
+        total: '18 of 22 slots filled',
+        barsTitle: 'Bay capacity today',
+        bars: [
+          { label: 'Bay 1 · General', n: 5, w: '83%', color: '#6c5cf0' },
+          { label: 'Bay 2 · General', n: 4, w: '67%', color: '#2f8bf5' },
+          { label: 'Bay 3 · Running repair', n: 4, w: '80%', color: '#0ea5a4' },
+          { label: 'Bay 4 · Body / paint', n: 3, w: '60%', color: '#f59f0b' },
+          { label: 'Wash bay', n: 2, w: '40%', color: '#12a35f' }
+        ]
+      },
+
+      svc_jobcard: {
+        label: 'Job cards', crumb: 'Service station · Workshop', title: 'Job cards',
+        sub: 'One job card per visit, opened against the vehicle master created at delivery. Customer complaints, work approved, parts issued and labour all hang off this number.',
+        action: 'Open job card',
+        chips: ['Open', 'In progress', 'Awaiting approval', 'Ready for billing'],
+        kpis: [kp('Open job cards', '11', '3 opened today', 0), kp('In progress', '6', 'avg 2.4 h elapsed', 1), kp('Awaiting customer nod', '2', 'estimate sent', 3), kp('Ready to bill', '3', M(6420) + ' value', 2)],
+        cols: [col('Job card'), col('Registration'), col('Customer'), col('Type'), col('Complaint'), col('Technician'), col('Bay'), col('Status')],
+        rows: [
+          ['JC/26-27/1841', 'MH-15-EK-4482', 'Sanjay R. Pawar', '1st free service', 'Routine — no complaint', 'Sunil More', 'Bay 1', ['In progress', 1]],
+          ['JC/26-27/1840', 'MH-15-DZ-1188', 'Kavita Jadhav', 'Paid service', 'Rough idling, low pickup', 'Rakesh Pawar', 'Bay 2', ['In progress', 1]],
+          ['JC/26-27/1839', 'MH-15-DY-7742', 'Ganesh Wagh', 'Running repair', 'Front brake noise', 'Sandeep Jadhav', 'Bay 3', ['Awaiting approval', 3]],
+          ['JC/26-27/1838', 'MH-15-CV-2019', 'Ashwini Patil', '3rd free service', 'Chain slack, horn weak', 'Sunil More', 'Bay 1', ['Ready for billing', 2]],
+          ['JC/26-27/1837', 'MH-15-DK-3390', 'Imran Qureshi', 'Accident repair', 'Fairing crack, mirror broken', 'Body shop', 'Bay 4', ['Awaiting approval', 3]],
+          ['JC/26-27/1836', 'MH-15-EJ-9921', 'Nilesh Bhoir', 'Oil change', 'Oil change only', 'Rakesh Pawar', 'Bay 2', ['Ready for billing', 2]],
+          ['JC/26-27/1835', 'MH-15-CQ-8841', 'Sanjay R. Pawar', 'Warranty claim', 'Speedometer console dead', 'Sandeep Jadhav', 'Bay 3', ['OEM claim filed', 5]]
+        ].map(r => ({
+          key: r[0], title: r[0] + ' · ' + r[1],
+          fields: [
+            { k: 'Job card', v: r[0] }, { k: 'Opened', v: '19 Aug 2026, 09:12' }, { k: 'Registration', v: r[1] }, { k: 'Customer', v: r[2] },
+            { k: 'Service type', v: r[3] }, { k: 'Complaint', v: r[4] }, { k: 'Technician', v: r[5] }, { k: 'Bay', v: r[6] },
+            { k: 'Odometer in', v: '4,820 km' }, { k: 'Estimate', v: M(1840) }, { k: 'Parts issued', v: '3 lines' }, { k: 'Labour', v: '1.5 h @ ' + M(320) },
+            { k: 'Promised time', v: '13:30' }, { k: 'Status', v: r[7][0] }, { k: 'Under warranty', v: r[3] === 'Warranty claim' ? 'Yes — OEM' : 'Yes' }, { k: 'Free service used', v: r[3].indexOf('free') > -1 ? 'Yes' : 'No' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2]), C(r[3]), C(r[4], 'mut'), C(r[5]), C(r[6], 'mut'), C(r[7][0])]
+        })),
+        note: 'A job card cannot be billed while any issued part is unreturned or any approval is still pending.',
+        total: '11 open · ' + M(6420) + ' ready to bill',
+        sideTitle: 'Workshop exceptions',
+        side: [
+          { label: 'Estimate sent, no customer reply 24 h+', v: '2 job cards', fg: '#a06a05' },
+          { label: 'Promised time already passed', v: '1 job card', fg: '#bf3f2c' },
+          { label: 'Parts issued but job not progressed', v: '1 job card', fg: '#a06a05' },
+          { label: 'Repeat complaint within 30 days', v: '1 vehicle', fg: '#bf3f2c' },
+          { label: 'Warranty claim awaiting OEM nod', v: '1 · ' + M(3200), fg: '#12609e' }
+        ]
+      },
+
+      svc_bay: {
+        label: 'Bay & technicians', crumb: 'Service station · Workshop', title: 'Bay and technician load',
+        sub: 'Who is working on what, and where. Assignment is by skill and current load, so a body-shop job never sits in a general bay waiting for the wrong technician.',
+        action: 'Reassign job',
+        chips: ['All technicians', 'Free now', 'Overloaded', 'On leave'],
+        kpis: [kp('Technicians on floor', '6', '1 on leave', 0), kp('Jobs in hand', '11', '1.8 per head', 1), kp('Bay utilisation', '74%', 'target 80%', 2), kp('Avg turnaround', '3.2 h', 'free service 2.1 h', 3)],
+        cols: [col('Technician'), col('Skill'), col('Bay'), col('Current job'), col('Jobs today', true), col('Hours booked', true), col('Status')],
+        rows: [
+          ['Sunil More', 'General service', 'Bay 1', 'JC/1841 · Access 125', 4, '5.5 h', ['Busy', 3]],
+          ['Rakesh Pawar', 'General service', 'Bay 2', 'JC/1840 · Access 125', 3, '4.0 h', ['Busy', 3]],
+          ['Sandeep Jadhav', 'Engine / electrical', 'Bay 3', 'JC/1839 · Avenis 125', 3, '4.5 h', ['Busy', 3]],
+          ['Vikas Shinde', 'Body & paint', 'Bay 4', 'JC/1837 · Burgman', 1, '6.0 h', ['Busy', 3]],
+          ['Amit Kale', 'General service', '—', 'Unassigned', 0, '0.0 h', ['Free now', 2]],
+          ['Pravin Gaikwad', 'Wash & polish', 'Wash bay', 'JC/1838 · Access 125', 5, '2.5 h', ['Busy', 3]],
+          ['Dattatray Sonar', 'Engine / electrical', '—', 'On leave', 0, '—', ['On leave', 4]]
+        ].map(r => ({
+          key: r[0], title: r[0] + ' · ' + r[1],
+          fields: [
+            { k: 'Technician', v: r[0] }, { k: 'Skill', v: r[1] }, { k: 'Bay', v: r[2] }, { k: 'Current job', v: r[3] },
+            { k: 'Jobs today', v: r[4] }, { k: 'Hours booked', v: r[5] }, { k: 'Status', v: r[6][0] }, { k: 'Efficiency (MTD)', v: '92%' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2], 'mut'), C(r[3]), C(r[4], 'n'), C(r[5], 'n'), C(r[6][0])]
+        })),
+        note: 'Assignment respects skill: body and paint jobs can only go to the body shop, electrical faults to an engine-electrical technician.',
+        total: '11 jobs across 6 technicians',
+        barsTitle: 'Load by technician',
+        bars: [
+          { label: 'Sunil More', n: 4, w: '80%', color: '#6c5cf0' },
+          { label: 'Rakesh Pawar', n: 3, w: '60%', color: '#2f8bf5' },
+          { label: 'Sandeep Jadhav', n: 3, w: '60%', color: '#0ea5a4' },
+          { label: 'Vikas Shinde', n: 1, w: '95%', color: '#f0487f' },
+          { label: 'Pravin Gaikwad', n: 5, w: '45%', color: '#12a35f' },
+          { label: 'Amit Kale', n: 0, w: '4%', color: '#f59f0b' }
+        ]
+      },
+
+      svc_parts: {
+        label: 'Parts issue', crumb: 'Service station · Stores', title: 'Parts issue against job cards',
+        sub: 'Spare parts leave the store only against an open job card, so consumption is always tied to a vehicle and a bill. This is the same spare-parts stock the sales side never touches.',
+        action: 'Issue parts',
+        chips: ['Issued today', 'Pending issue', 'Returns', 'Below minimum'],
+        kpis: [kp('Issues today', '14', M(8940) + ' value', 0), kp('Pending requests', '3', 'from 2 bays', 3), kp('Returns to store', '1', 'wrong part', 4), kp('Parts below minimum', '23', 'reorder due', 5)],
+        cols: [col('Issue slip'), col('Job card'), col('Part no.'), col('Part name'), col('Qty', true), col('Rate', true), col('Value', true), col('Issued to')],
+        rows: [
+          ['IS/8841', 'JC/1841', '16510-05240', 'Oil filter', 1, 210, 210, 'Sunil More'],
+          ['IS/8841', 'JC/1841', '99000-21B10', 'Engine oil 10W40 · 1 L', 1, 470, 470, 'Sunil More'],
+          ['IS/8842', 'JC/1840', '13780-05310', 'Air filter element', 1, 385, 385, 'Rakesh Pawar'],
+          ['IS/8842', 'JC/1840', '09482-00375', 'Spark plug', 1, 240, 240, 'Rakesh Pawar'],
+          ['IS/8843', 'JC/1839', '54401-05811', 'Brake shoe set', 1, 640, 640, 'Sandeep Jadhav'],
+          ['IS/8844', 'JC/1838', '27601-05820', 'Drive chain', 1, 1180, 1180, 'Sunil More'],
+          ['IS/8845', 'JC/1837', '94401-05852', 'Front fairing panel', 1, 2840, 2840, 'Vikas Shinde']
+        ].map((r, i) => ({
+          key: r[0] + i, title: r[3] + ' · ' + r[1],
+          fields: [
+            { k: 'Issue slip', v: r[0] }, { k: 'Job card', v: r[1] }, { k: 'Part no.', v: r[2] }, { k: 'Part name', v: r[3] },
+            { k: 'Quantity', v: r[4] }, { k: 'Rate', v: M(r[5]) }, { k: 'Value', v: M(r[6]) }, { k: 'Issued to', v: r[7] },
+            { k: 'Rack', v: 'B-04' }, { k: 'Stock after issue', v: '41' }, { k: 'Billed on', v: 'Job card invoice' }, { k: 'Warranty part', v: 'No' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2], 'mut'), C(r[3]), C(r[4], 'n'), C(M(r[5]), 'n'), C(M(r[6]), 'n'), C(r[7], 'mut')]
+        })),
+        note: 'No part can be issued without an open job card — that single rule is what makes consumption reconcile at month end.',
+        total: 'Issued today ' + M(5965),
+        sideTitle: 'Store alerts',
+        side: [
+          { label: 'Air filter element — below minimum', v: '18 / 20', fg: '#bf3f2c' },
+          { label: 'Ignition coil (Gixxer) — below minimum', v: '3 / 6', fg: '#bf3f2c' },
+          { label: 'Front fairing panel — single unit left', v: '1 left', fg: '#a06a05' },
+          { label: 'Dead stock over 180 days', v: '41 SKUs · ' + M(62400), fg: '#a06a05' },
+          { label: 'Indent pending with OEM', v: '2 · ' + M(48200), fg: '#12609e' }
+        ]
+      },
+
+      svc_bill: {
+        label: 'Service billing', crumb: 'Service station · Billing', title: 'Service invoice',
+        sub: 'Labour, parts and consumables billed off the job card, with free-service and warranty lines carried at zero to the customer and claimed from the OEM instead.',
+        action: 'Generate invoice',
+        chips: ['To bill', 'Billed today', 'Warranty claims', 'Unpaid'],
+        kpis: [kp('Billed today', M(38420), '9 invoices', 2), kp('Ready to bill', M(6420), '3 job cards', 0), kp('Labour revenue MTD', M(412800), '58% of service', 1), kp('OEM claims pending', M(18640), '6 claims', 3)],
+        cols: [col('Invoice'), col('Job card'), col('Customer'), col('Labour', true), col('Parts', true), col('Discount', true), col('Total', true), col('Paid by')],
+        rows: [
+          ['SVC/26-27/2214', 'JC/1838', 'Ashwini Patil', 640, 1180, 0, 2148, 'UPI'],
+          ['SVC/26-27/2213', 'JC/1836', 'Nilesh Bhoir', 320, 680, 0, 1180, 'Cash'],
+          ['SVC/26-27/2212', 'JC/1834', 'Deepak Sonawane', 960, 2410, 200, 3980, 'Card'],
+          ['SVC/26-27/2211', 'JC/1833', 'Manisha Thorat', 480, 210, 0, 814, 'UPI'],
+          ['SVC/26-27/2210', 'JC/1832', 'Sameer Kulkarni', 1280, 4820, 400, 7196, 'UPI'],
+          ['SVC/26-27/2209', 'JC/1835', 'Sanjay R. Pawar', 0, 3200, 0, 0, 'OEM warranty'],
+          ['SVC/26-27/2208', 'JC/1831', 'Wagh Transport', 1920, 3640, 0, 6564, 'Credit — 15 d']
+        ].map(r => ({
+          key: r[0], title: r[0] + ' · ' + r[2],
+          fields: [
+            { k: 'Invoice', v: r[0] }, { k: 'Job card', v: r[1] }, { k: 'Customer', v: r[2] }, { k: 'Labour', v: M(r[3]) },
+            { k: 'Parts', v: M(r[4]) }, { k: 'Discount', v: M(r[5]) }, { k: 'GST', v: M(Math.round(r[6] * 0.18 / 1.18)) }, { k: 'Invoice total', v: M(r[6]) },
+            { k: 'Paid by', v: r[7] }, { k: 'Free service applied', v: r[3] === 0 ? 'Warranty' : 'No' }, { k: 'Next service due', v: '19 Feb 2027' }, { k: 'Feedback call', v: 'Queued +3 days' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2]), C(M(r[3]), 'n'), C(M(r[4]), 'n'), C(r[5] ? M(r[5]) : '—', 'n'), C(r[6] ? M(r[6]) : 'Nil — claim', 'n'), C(r[7], 'mut')]
+        })),
+        note: 'Free-service and warranty work shows at zero to the customer and moves to the OEM claim register automatically.',
+        total: 'Billed today ' + M(21882),
+        sideTitle: 'Money in the workshop',
+        side: [
+          { label: 'Collected today', v: M(15318), fg: '#0b7a4e' },
+          { label: 'Credit customers outstanding', v: M(6564), fg: '#a06a05' },
+          { label: 'OEM warranty claims pending', v: M(18640), fg: '#12609e' },
+          { label: 'Insurance jobs awaiting survey', v: '1 · ' + M(12400), fg: '#a06a05' },
+          { label: 'Average bill value MTD', v: M(2340), fg: '#4b34c9' }
+        ]
+      },
+
+      svc_history: {
+        label: 'Service history', crumb: 'Service station · Customer', title: 'Vehicle service history',
+        sub: 'The same vehicle master the sale created, now carrying every visit. A service advisor finds a bike by mobile, registration or chassis and sees the whole life of it.',
+        action: 'Open vehicle',
+        chips: ['All visits', 'Free services', 'Paid services', 'Warranty'],
+        kpis: [kp('Visits MTD', '212', '+18 vs July', 0), kp('Free service uptake', '82%', 'target 85%', 2), kp('Repeat customers', '68%', 'within a year', 1), kp('Avg visits per vehicle', '2.4', 'lifetime', 5)],
+        cols: [col('Date'), col('Job card'), col('Vehicle'), col('Registration'), col('Odometer', true), col('Work done'), col('Bill', true), col('Type')],
+        rows: [
+          ['19 Aug 2026', 'JC/1841', 'Access 125 RC', 'MH-15-EK-4482', '820 km', '1st free service', 0, '1st free'],
+          ['14 Feb 2026', 'JC/1402', 'Access 125 Std', 'MH-15-CV-2019', '8,410 km', '3rd free service + chain', 640, '3rd free'],
+          ['02 Feb 2026', 'JC/1388', 'Access 125 Std', 'MH-15-DZ-1188', '4,920 km', 'Paid service, brake shoe', 2148, 'Paid'],
+          ['18 Nov 2025', 'JC/1204', 'Avenis 125 RC', 'MH-15-DY-7742', '3,180 km', '2nd free service', 0, '2nd free'],
+          ['09 Sep 2025', 'JC/1090', 'Burgman Street 125', 'MH-15-DK-3390', '6,740 km', 'Accident repair — fairing', 12400, 'Insurance'],
+          ['21 Jun 2025', 'JC/0942', 'Access 125 Std', 'MH-15-CQ-8841', '11,240 km', 'Console replaced', 0, 'Warranty']
+        ].map((r, i) => ({
+          key: r[1] + i, title: r[3] + ' · ' + r[0],
+          fields: [
+            { k: 'Date', v: r[0] }, { k: 'Job card', v: r[1] }, { k: 'Vehicle', v: r[2] }, { k: 'Registration', v: r[3] },
+            { k: 'Odometer', v: r[4] }, { k: 'Work done', v: r[5] }, { k: 'Bill value', v: r[6] ? M(r[6]) : 'Nil' }, { k: 'Type', v: r[7] },
+            { k: 'Technician', v: 'Sunil More' }, { k: 'Sold by us', v: 'Yes · SI/26-27/1104' }, { k: 'Warranty status', v: 'In warranty' }, { k: 'Next due', v: '19 Feb 2027' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2]), C(r[3]), C(r[4], 'n'), C(r[5]), C(r[6] ? M(r[6]) : 'Nil', 'n'), C(r[7], 'mut')]
+        })),
+        note: 'Because the sale created this record, service never has to re-enter the customer, the chassis or the warranty date.',
+        total: '3,142 vehicles on record',
+        sideTitle: 'Retention signals',
+        side: [
+          { label: 'Sold by us and still servicing here', v: '71%', fg: '#0b7a4e' },
+          { label: 'Lapsed — no visit in 12 months', v: '284 vehicles', fg: '#a06a05' },
+          { label: 'Free service never claimed', v: '96 slots', fg: '#bf3f2c' },
+          { label: 'Insurance renewal due in 30 days', v: '68 vehicles', fg: '#12609e' },
+          { label: 'Average customer lifetime value', v: M(24800), fg: '#4b34c9' }
+        ]
+      },
+
+      svc_followup: {
+        label: 'Reminders & feedback', crumb: 'Service station · Customer care', title: 'Reminders and feedback',
+        sub: 'The engine that brings the customer back: service-due reminders, post-service feedback calls and insurance renewal nudges, all fired from dates the system already holds.',
+        action: 'Send queue now',
+        chips: ['Queued', 'Sent today', 'Feedback pending', 'Complaints'],
+        kpis: [kp('Reminders queued', '134', 'next 7 days', 3), kp('Sent today', '58', '94% delivered', 2), kp('Feedback pending', '9', 'post-service', 0), kp('Open complaints', '2', 'escalated', 4)],
+        cols: [col('Trigger'), col('Customer'), col('Registration'), col('Channel'), col('Send on'), col('Response'), col('Status')],
+        rows: [
+          ['1st free service due', 'Kavita Jadhav', 'MH-15-DZ-1188', 'WhatsApp + SMS', '23 Sep 10:00', '—', ['Queued', 3]],
+          ['Post-service feedback', 'Ashwini Patil', 'MH-15-CV-2019', 'Call', '22 Aug 11:00', '—', ['Pending', 0]],
+          ['Post-service feedback', 'Nilesh Bhoir', 'MH-15-EJ-9921', 'WhatsApp', '21 Aug 10:00', '4 / 5 — satisfied', ['Answered', 2]],
+          ['Insurance renewal', 'Ashwini Patil', 'MH-15-CV-2019', 'SMS', '12 Jan 10:00', '—', ['Queued', 3]],
+          ['Vehicle ready for pickup', 'Ganesh Wagh', 'MH-15-DY-7742', 'WhatsApp', '19 Aug 13:30', 'Read', ['Sent', 2]],
+          ['Complaint — repeat issue', 'Deepak Sonawane', 'MH-15-EB-2204', 'Call', '19 Aug 09:40', 'Escalated to manager', ['Open', 4]],
+          ['Lapsed customer win-back', 'Imran Qureshi', 'MH-15-DK-3390', 'WhatsApp', '25 Aug 10:00', '—', ['Queued', 3]]
+        ].map((r, i) => ({
+          key: r[0] + i, title: r[0] + ' · ' + r[1],
+          fields: [
+            { k: 'Trigger', v: r[0] }, { k: 'Customer', v: r[1] }, { k: 'Registration', v: r[2] }, { k: 'Channel', v: r[3] },
+            { k: 'Send on', v: r[4] }, { k: 'Response', v: r[5] }, { k: 'Status', v: r[6][0] }, { k: 'Owner', v: 'Customer care' },
+            { k: 'Template', v: 'SERVICE_DUE_1' }, { k: 'Attempts', v: '1' }, { k: 'Opted out', v: 'No' }, { k: 'Linked job card', v: 'JC/26-27/1838' }
+          ],
+          cells: [C(r[0], 'b'), C(r[1]), C(r[2]), C(r[3]), C(r[4], 'mut'), C(r[5], 'mut'), C(r[6][0])]
+        })),
+        note: 'Every reminder is dated off something the system already knows — delivery date, last odometer, policy expiry. Nobody maintains a diary.',
+        total: '134 queued · 58 sent today',
+        sideTitle: 'Feedback this month',
+        side: [
+          { label: 'Average satisfaction score', v: '4.4 / 5', fg: '#0b7a4e' },
+          { label: 'Feedback collected', v: '148 of 212', fg: '#4b34c9' },
+          { label: 'Complaints raised', v: '7 · 5 closed', fg: '#a06a05' },
+          { label: 'Repeat complaint within 30 days', v: '1 vehicle', fg: '#bf3f2c' },
+          { label: 'Customers who booked from a reminder', v: '31', fg: '#12609e' }
+        ]
+      }
+    };
   }
 
   reportVals() {
@@ -1202,10 +1567,15 @@ class Component extends DCLogic {
       };
     });
 
+    const svcDefs = this.serviceDefs();
+    const svcOrder = ['svc_appt', 'svc_jobcard', 'svc_bay', 'svc_parts', 'svc_bill', 'svc_history', 'svc_followup'];
+    const svcBadge = { svc_appt: '18', svc_jobcard: '11', svc_parts: '3' };
+    const svcCur = svcDefs[s.svc] || svcDefs.svc_jobcard;
+
     const navDef = [
       { label: 'OVERVIEW', items: [{ id: 'dash', label: 'Dashboard' }] },
       { label: 'SALES', items: [{ id: 'flow', label: 'Vehicle sales', steps: true, badge: (s.idx + 1) + '/11' }, { id: 'stockView', label: 'Vehicle stock', badge: '36' }] },
-      { label: 'SERVICE', items: [{ id: 'serviceView', label: 'Free service plan' }] },
+      { label: 'SERVICE STATION', items: [{ id: 'serviceView', label: 'Free service plan' }].concat(svcOrder.map(id => ({ id: 'svc:' + id, label: svcDefs[id].label, badge: svcBadge[id] || '' }))) },
       { label: 'REPORTS', items: rv.repOrder.map(id => ({ id: 'rep:' + id, label: rv.repDefs[id].label })) }
     ];
 
@@ -1214,6 +1584,7 @@ class Component extends DCLogic {
       if (id === 'flow') return this.setState({ view: 'flow' });
       if (id === 'stockView') return this.setState({ view: 'flow', idx: 2 });
       if (id === 'serviceView') return this.setState({ view: 'flow', idx: 10 });
+      if (id.indexOf('svc:') === 0) return this.setState({ view: 'svc', svc: id.slice(4), svcPick: null, svcChip: 0 });
       if (id.indexOf('rep:') === 0) return this.setState({ view: 'reports', report: id.slice(4), drill: null });
     };
     const isActiveNav = id => {
@@ -1221,6 +1592,7 @@ class Component extends DCLogic {
       if (id === 'flow') return s.view === 'flow';
       if (id === 'stockView') return s.view === 'flow' && s.idx === 2;
       if (id === 'serviceView') return s.view === 'flow' && s.idx === 10;
+      if (id.indexOf('svc:') === 0) return s.view === 'svc' && id === 'svc:' + s.svc;
       return s.view === 'reports' && id === 'rep:' + s.report;
     };
 
@@ -1319,10 +1691,11 @@ class Component extends DCLogic {
     const vLine = v ? v.model + ' ' + v.variant + ' · ' + v.colour : 'Not allocated yet';
     const meta = this.meta[cur.id] || ['', '', ''];
 
-    const crumb = s.view === 'dash' ? 'Overview' : s.view === 'reports' ? 'Reports · ' + rv.periodLabel : 'Vehicle sales · ' + meta[0];
-    const title = s.view === 'dash' ? 'Dashboard' : s.view === 'reports' ? rv.repTitle : meta[1];
+    const crumb = s.view === 'dash' ? 'Overview' : s.view === 'svc' ? svcCur.crumb : s.view === 'reports' ? 'Reports · ' + rv.periodLabel : 'Vehicle sales · ' + meta[0];
+    const title = s.view === 'dash' ? 'Dashboard' : s.view === 'svc' ? svcCur.title : s.view === 'reports' ? rv.repTitle : meta[1];
     const sub = s.view === 'dash'
       ? 'Purchase to sales for the vehicle business: what was bought from Suzuki, what is on the floor, and what has been invoiced and delivered.'
+      : s.view === 'svc' ? svcCur.sub
       : s.view === 'reports' ? rv.repBlurb : meta[2];
 
     return Object.assign(rv, {
@@ -1343,7 +1716,7 @@ class Component extends DCLogic {
       kycCols: phone ? 'minmax(0,1fr)' : narrow ? 'minmax(0,1fr) 130px 110px' : 'minmax(0,1fr) 200px 130px 120px',
       kycAlign: phone ? 'start' : 'center',
       nav, steps, p,
-      isDash: s.view === 'dash', isFlow: s.view === 'flow', isReports: s.view === 'reports',
+      isDash: s.view === 'dash', isFlow: s.view === 'flow', isReports: s.view === 'reports', isSvc: s.view === 'svc',
       crumb, pageTitle: title, pageSub: sub,
       dealRef: 'VS/26-27/0729',
       advance: this.advance, back: this.back, restart: this.restart,
@@ -1486,6 +1859,28 @@ class Component extends DCLogic {
         { k: 'On-road', v: this.money(onRoad), fg: '#17182b' },
         { k: 'Balance', v: this.money(balance), fg: balance > 0 ? '#96650a' : '#12855c' }
       ],
+      svcKpis: svcCur.kpis || [],
+      svcChips: (svcCur.chips || []).map((label, i) => ({
+        label, go: (() => this.setState({ svcChip: i })),
+        bg: s.svcChip === i ? 'linear-gradient(135deg,#6c5cf0,#a855f7)' : '#ffffff',
+        bd: s.svcChip === i ? 'transparent' : '#dcdde8',
+        fg: s.svcChip === i ? '#ffffff' : '#4c5066'
+      })),
+      svcAction: svcCur.action || 'Continue',
+      svcCols: svcCur.cols || [],
+      svcRows: (svcCur.rows || []).map(r => ({
+        cells: r.cells,
+        bg: s.svcPick === r.key ? '#f6f5ff' : 'transparent',
+        pick: (() => this.setState({ svcPick: s.svcPick === r.key ? null : r.key }))
+      })),
+      svcRowCount: (svcCur.rows || []).length + ' rows',
+      svcNote: svcCur.note || '', svcTotal: svcCur.total || '',
+      svcHasPicked: !!(svcCur.rows || []).find(r => r.key === s.svcPick),
+      svcPickedTitle: ((svcCur.rows || []).find(r => r.key === s.svcPick) || {}).title || '',
+      svcPickedFields: ((svcCur.rows || []).find(r => r.key === s.svcPick) || {}).fields || [],
+      svcClear: () => this.setState({ svcPick: null }),
+      svcHasBars: !!svcCur.bars, svcBarsTitle: svcCur.barsTitle || '', svcBars: svcCur.bars || [],
+      svcHasSide: !!svcCur.side, svcSideTitle: svcCur.sideTitle || '', svcSide: svcCur.side || [],
       audit: s.audit, auditEmpty: s.audit.length === 0
     });
   }
